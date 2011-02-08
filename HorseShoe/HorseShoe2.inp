@@ -1,0 +1,11 @@
+# $Id: HorseShoe2.inp,v 1.2 2009-06-09 07:00:17 kmo Exp $
+
+PATCHES 1
+mesh2.g2
+
+CONSTRAINTS 4
+# patch face code pdis
+  1     5    23
+  1     6    23
+  1     5    1    -1.0
+  1     6    1     1.0

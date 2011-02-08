@@ -1,0 +1,17 @@
+# $Id: Hull6_free_p2.inp,v 1.1 2009-06-11 18:50:44 kmo Exp $
+
+PATCHFILE hull2_stiff6.g2
+
+REFINE 1
+# patch ru rv rw
+  -138  2  2  2
+
+RAISEORDER 1
+# patch ru rv rw
+  -138  1  1  1
+
+TOPOLOGYFILE hull2_stiff6.rel
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 ALL

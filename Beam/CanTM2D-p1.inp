@@ -1,0 +1,28 @@
+# $Id: CanTM2D-p1.inp,v 1.1 2010-06-22 09:02:30 kmo Exp $
+# 2D Cantilever beam with a tip moment load.
+
+PATCHES 1
+beam2D.g2
+
+REFINE 1
+# patch ru rv
+  1     7  3
+
+FIXPOINTS 3
+# patch rx  ry  code
+  1     0.0 0.0 1
+  1     0.0 0.5 12
+  1     0.0 1.0 1
+
+# Analytical solution
+# Specifier  H   M0
+ANASOL CanTM 0.4 1.0e6
+
+PRESSURE 2
+# patch edge
+  1     1
+  1     2
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1

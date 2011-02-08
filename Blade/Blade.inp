@@ -1,0 +1,5 @@
+# $Id: Blade.inp,v 1.1 2010-11-21 18:35:17 kmo Exp $
+# Free vibration analysis
+
+PATCHFILE Blade100u.g2
+NODEFILE Blade100u.gno

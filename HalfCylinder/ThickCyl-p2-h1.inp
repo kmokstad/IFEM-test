@@ -1,0 +1,35 @@
+# $Id: ThickCyl-p2-h1.inp,v 1.1 2010-10-17 11:48:22 kmo Exp $
+# Compression of a thick hollow cylinder, nonlinear analysis
+
+PATCHFILE half_pipe.g2
+PROPERTYFILE lineload.prc
+
+RAISEORDER 1
+# patch ru rv rw
+  1     0  1  1
+
+REFINE 1
+# patch ru rv rw
+  1     1  1  0
+
+DIRICHLET 3
+# code
+  2
+  3
+  12
+
+LINEAR_PRESSURE 1
+# code direction pressure
+  4    1         -500.0
+
+ISOTROPHIC 1
+# code E     nu  rho
+  0    16800 0.4 0.0
+
+TIME_STEPPING
+# start stop dt
+  0.0   1.0  0.25
+
+NONLINEAR_SOLVER
+# maxit convTol divgLim
+  20    1.0e-6  100.0

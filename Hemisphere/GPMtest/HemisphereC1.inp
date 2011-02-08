@@ -1,0 +1,19 @@
+# $Id: HemisphereC1.inp,v 1.1 2010-03-09 08:17:44 kmo Exp $
+
+PATCHFILE    HemisphereC1.g2
+NODEFILE     HemisphereC1.gno
+PROPERTYFILE Hemisphere.prc
+
+DIRICHLET 3
+# code
+  1
+  2
+  3
+
+CONSTANT_PRESSURE 1
+# code direction pressure
+  4    0         -100.0
+
+ISOTROPHIC 1
+# code E       nu  rho
+  0    6.825e7 0.3 0.0

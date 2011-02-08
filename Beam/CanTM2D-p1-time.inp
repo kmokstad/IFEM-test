@@ -1,0 +1,28 @@
+# $Id: CanTM2D-p1-time.inp,v 1.1 2010-06-22 09:16:16 kmo Exp $
+# 2D Cantilever beam with a linearly increasing end moment.
+
+PATCHES 1
+beam2D.g2
+
+REFINE 1
+# patch ru rv
+  1     7  3
+
+FIXPOINTS 3
+# patch rx  ry  code
+  1     0.0 0.0 1
+  1     0.0 0.5 12
+  1     0.0 1.0 1
+
+PRESSURE 2
+# patch edge dir pgrad  p0  scale
+  1     2    1   1.0 Y -0.2 1.0e6
+  1     1    1  -1.0 Y  0.2 1.0e6
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1
+
+TIME_STEPPING
+# start stop  dt
+  0.0   100.0 5.0

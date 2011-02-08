@@ -1,0 +1,43 @@
+# $Id: StiffPanel1_free_p32_h0.inp,v 1.1 2009-06-14 12:43:12 kmo Exp $
+
+PATCHFILE stiffPanel_1.g2
+
+RAISEORDER 31
+# patch addu addv addw
+     1    2    2    1
+     2    1    2    1
+     3    2    2    1
+     4    1    2    1
+     5    2    2    1
+     6    1    2    1
+     7    2    2    1
+     8    1    2    1
+     9    2    2    1
+    10    1    2    1
+    11    2    2    1
+    12    1    2    2
+    13    1    2    2
+    14    1    2    2
+    15    1    2    2
+    16    1    2    2
+    17    2    2    1
+    18    1    2    1
+    19    2    2    1
+    20    2    2    1
+    21    1    2    1
+    22    2    2    1
+    23    2    2    1
+    24    1    2    1
+    25    2    2    1
+    26    2    2    1
+    27    1    2    1
+    28    2    2    1
+    29    2    2    1
+    30    1    2    1
+    31    2    2    1
+
+TOPOLOGYFILE stiffPanel_1.rel
+
+MATERIAL 1
+# E        nu  rho     patches
+  206000.0 0.3 7.85e-9 ALL

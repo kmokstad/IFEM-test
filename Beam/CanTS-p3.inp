@@ -1,0 +1,40 @@
+# $Id: CanTS-p3.inp,v 1.1 2010-03-16 10:59:52 kmo Exp $
+# Cantilever beam with a tip shear load.
+
+PATCHES 1
+beam3D.g2
+
+REFINE 1
+# patch ru rv rw
+  1     0  0  1
+
+RAISEORDER 1
+# patch ru rv rw
+  1     2  0  2
+
+REFINE 1
+# patch ru rv rw
+  1     7  0  1
+
+CONSTRAINTS 3
+# patch line code par
+  1     11   1    0.0
+  1     11   13   0.5
+  1     11   1    1.0
+
+FIXPOINTS 1
+# patch rx  ry  rz
+  1     0.0 0.0 0.5
+
+# Analytical solution
+# Specifier  L   H   F0    nu
+ANASOL CanTS 2.0 0.4 1.0e6 0.3
+
+PRESSURE 2
+# patch face
+  1     1
+  1     2
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1

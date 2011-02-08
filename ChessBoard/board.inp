@@ -1,0 +1,8 @@
+PATCHFILE    Chess.g2
+NODEFILE     Chess.gno
+PROPERTYFILE Chess.prc
+
+ISOTROPHIC 2
+# code E      nu  rho
+  1    2.1e11 0.3 7850.0
+  9999 2.1e10 0.3 7850.0

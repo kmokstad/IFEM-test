@@ -1,0 +1,17 @@
+# $Id: fHole1-p2.inp,v 1.2 2011-02-04 16:09:47 kmo Exp $
+
+PATCHES 1
+../hole-p2.g2
+
+RAISEORDER 1
+# patch ru rv rw
+  1     0  0  1
+
+CONSTRAINTS 2
+# patch face code
+  1     1    1
+  1     2    2
+
+MATERIAL 1
+# E     nu  rho    patches
+  10.92 0.3 1.0e-6 1

@@ -1,0 +1,39 @@
+# $Id: CanSinq-p2-time.inp,v 1.1 2010-06-22 09:16:16 kmo Exp $
+# Cantilever beam with a time-varying distributed load.
+
+PATCHES 1
+beam3D.g2
+
+REFINE 1
+# patch ru rv rw
+  1     0  0  1
+
+RAISEORDER 1
+# patch ru rv rw
+  1     1  0  1
+
+REFINE 1
+# patch ru rv rw
+  1     7  0  1
+
+CONSTRAINTS 3
+# patch line code par
+  1     11   1    0.0
+  1     11   13   0.5
+  1     11   1    1.0
+
+FIXPOINTS 1
+# patch rx  ry  rz
+  1     0.0 0.0 0.5
+
+PRESSURE 1
+# patch face dir pval   freq phase
+  1     6    3   1.0e6  1.0  0.0
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1
+
+TIME_STEPPING
+# start stop dt
+  0.0   2.0  0.1

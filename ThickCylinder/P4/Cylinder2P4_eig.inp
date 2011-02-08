@@ -1,0 +1,8 @@
+# $Id: Cylinder2P4_eig.inp,v 1.2 2009-06-09 07:00:18 kmo Exp $
+
+PATCHES 1
+mesh2.g2
+
+PERIODIC 1
+# patch direction
+  1     1

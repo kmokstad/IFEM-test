@@ -1,0 +1,22 @@
+# $Id: BladeTSnl.inp,v 1.1 2010-11-21 18:35:17 kmo Exp $
+# Cantilever beam with a tip shear load, nonlinear analysis
+
+PATCHFILE Blade100m.g2
+
+PROPERTYFILE Blade.prc
+
+DIRICHLET 1
+# code
+  123
+
+LINEAR_PRESSURE 1
+# code dir pval
+  4    2   1.0e8
+
+TIME_STEPPING
+# start stop dt
+  0.0   1.0  0.1
+
+NONLINEAR_SOLVER
+# maxit convTol divgLim
+  20    1.0e-6  100.0

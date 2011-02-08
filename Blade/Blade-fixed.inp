@@ -1,0 +1,10 @@
+# $Id: Blade-fixed.inp,v 1.1 2010-11-21 18:35:17 kmo Exp $
+# Vibration analysis of a cantilever
+
+PATCHFILE Blade100u.g2
+NODEFILE Blade100u.gno
+PROPERTYFILE Blade.prc
+
+DIRICHLET 1
+# code
+  123

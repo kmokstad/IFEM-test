@@ -1,0 +1,27 @@
+# $Id: TBar4-p2-h7x28.inp,v 1.1 2011-01-28 16:12:23 kmo Exp $
+# 3D Square bar with a linearly increasing end twist.
+# 4-patch version, suitable for parallel processing.
+# This model 7x7x7x4 quadratic elements.
+
+PATCHFILE    TBar4-p2-h7x28.g2
+NODEFILE     TBar4-p2-h7x28.gno
+PROPERTYFILE TBar4.prc
+
+DIRICHLET 4
+# code prescribed-motion
+  123
+  1    1.0 XrotZ 0.5 0.5
+  2    1.0 YrotZ 0.5 0.5
+  3
+
+ISOTROPHIC 1
+# code kappa    mu      rho
+  0    400942.0 80.1938 0.0
+
+TIME_STEPPING
+# start stop dt
+  0.0   30.0 0.01
+
+NONLINEAR_SOLVER
+# maxit convTol
+  20    1.0e-16

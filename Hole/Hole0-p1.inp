@@ -1,0 +1,23 @@
+# $Id: Hole0-p1.inp,v 1.1 2010-03-17 15:46:12 kmo Exp $
+
+PATCHES 1
+hole3.g2
+
+CONSTRAINTS 4
+# patch face code
+  1     1    1
+  1     2    2
+  1     5    3
+  1     6    3
+
+# Analytical solution
+# Specifier a   F0   nu
+ANASOL Hole 1.0 10.0 0.3
+
+PRESSURE 1
+# patch face
+  1     4
+
+MATERIAL 1
+# E      nu  rho patches
+  1000.0 0.3 0.0 1

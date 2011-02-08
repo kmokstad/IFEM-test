@@ -1,0 +1,13 @@
+# $Id: mutter-h2.inp,v 1.2 2010-04-20 09:39:55 kmo Exp $
+
+PATCHFILE A2_vol3.g2
+
+REFINE 1
+# patch addu addv addw
+  -36   1    1    1
+
+TOPOLOGYFILE A2_vol3.rel
+
+MATERIAL 1
+# E        nu  rho     patches
+  206000.0 0.3 7.85e-9 ALL

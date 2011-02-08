@@ -1,0 +1,12 @@
+# $Id: Beam_free.inp,v 1.1 2009-06-09 07:00:16 kmo Exp $
+
+PATCHES 1
+linearbeam.g2
+
+REFINE 1
+# patch ru rv rw
+   1    3  1  7
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1

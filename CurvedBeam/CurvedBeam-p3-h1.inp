@@ -1,0 +1,27 @@
+# $Id: CurvedBeam-p3-h1.inp,v 1.1 2011-01-05 19:17:58 kmo Exp $
+# 2D Curved beam with a prescribed end displacement.
+
+PATCHFILE curved_beam.g2
+
+RAISEORDER 1
+# patch ru rv
+  1     1  2
+
+REFINE 1
+# patch ru rv
+  1     5  2
+
+CONSTRAINTS 3
+# patch corner code
+  1     -1     12
+# patch edge code value
+  1     1    1
+  1     2    1    -0.1
+
+# Analytical solution
+# Specifier       a   b     u0  E
+ANASOL CurvedBeam 5.0 10.0 -0.1 9600.0
+
+MATERIAL 1
+# E      nu  rho patches
+  9600.0 0.2 0.0 1

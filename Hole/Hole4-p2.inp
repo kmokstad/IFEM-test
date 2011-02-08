@@ -1,0 +1,31 @@
+# $Id: Hole4-p2.inp,v 1.1 2009-07-05 14:22:36 kmo Exp $
+
+PATCHES 1
+hole3.g2
+
+REFINE 1
+# patch ru rv rw
+  1     15 15  0
+
+RAISEORDER 1
+# patch ru rv rw
+  1     1  1  0
+
+CONSTRAINTS 4
+# patch face code
+  1     1    1
+  1     2    2
+  1     5    3
+  1     6    3
+
+# Analytical solution
+# Specifier a   F0   nu
+ANASOL Hole 1.0 10.0 0.3
+
+PRESSURE 1
+# patch face
+  1     4
+
+MATERIAL 1
+# E      nu  rho patches
+  1000.0 0.3 0.0 1

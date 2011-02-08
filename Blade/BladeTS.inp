@@ -1,0 +1,14 @@
+# $Id: BladeTS.inp,v 1.1 2010-11-21 18:35:17 kmo Exp $
+# Cantilever beam with a tip shear load, linear analysis
+
+PATCHFILE Blade100m.g2
+
+PROPERTYFILE Blade.prc
+
+DIRICHLET 1
+# code
+  123
+
+CONSTANT_PRESSURE 1
+# code dir pval
+  4    2   1.0e8

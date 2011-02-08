@@ -1,0 +1,33 @@
+# $Id: CanTSnl-p3-h2.inp,v 1.2 2010-09-14 07:27:19 kmo Exp $
+# Cantilever beam with a tip shear load, nonlinear analysis
+
+PATCHES 1
+slenderBeam.g2
+
+RAISEORDER 1
+# patch ru rv rw
+  1     2  2  2 
+
+REFINE 1
+# patch ru rv rw
+  1     3  0  0
+
+CONSTRAINTS 1
+# patch face code
+  1     1    123
+
+PRESSURE 1
+# patch face dir pval     linear
+  1     2    3   18223.95 1.0
+
+MATERIAL 1
+# E     nu  rho patches
+  1.0e8 0.0 0.0 1
+
+TIME_STEPPING
+# start stop dt
+  0.0   1.0  0.1
+
+NONLINEAR_SOLVER
+# maxit convTol divgLim
+  20    1.0e-6  1.0e5

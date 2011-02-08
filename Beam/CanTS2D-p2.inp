@@ -1,0 +1,36 @@
+# $Id: CanTS2D-p2.inp,v 1.2 2010-03-17 18:03:54 kmo Exp $
+# 2D Cantilever beam with a tip shear load.
+
+PATCHES 1
+beam2D.g2
+
+REFINE 1
+# patch ru rv
+  1     0  1
+
+RAISEORDER 1
+# patch ru rv
+  1     1  1
+
+REFINE 1
+# patch ru rv
+  1     7  1
+
+FIXPOINTS 3
+# patch rx  ry  code
+  1     0.0 0.0 1
+  1     0.0 0.5 12
+  1     0.0 1.0 1
+
+# Analytical solution
+# Specifier  L   H   F0    nu
+ANASOL CanTS 2.0 0.4 1.0e6 0.3
+
+PRESSURE 2
+# patch edge
+  1     1
+  1     2
+
+MATERIAL 1
+# E        nu   rho    patches
+  2.068e11 0.29 7820.0 1

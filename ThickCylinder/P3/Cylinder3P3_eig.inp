@@ -1,0 +1,8 @@
+# $Id: Cylinder3P3_eig.inp,v 1.2 2009-06-09 07:00:18 kmo Exp $
+
+PATCHES 1
+mesh3.g2
+
+PERIODIC 1
+# patch direction
+  1     1

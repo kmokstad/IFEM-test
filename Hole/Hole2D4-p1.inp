@@ -1,0 +1,26 @@
+# $Id: Hole2D4-p1.inp,v 1.1 2010-03-17 15:46:12 kmo Exp $
+# Infinite membrane with a circular hole.
+
+PATCHES 1
+hole2D.g2
+
+REFINE 1
+# patch ru rv
+  1     15 15
+
+CONSTRAINTS 2
+# patch edge code
+  1     1    1
+  1     2    2
+
+# Analytical solution
+# Specifier a   F0   nu
+ANASOL Hole 1.0 10.0 0.3
+
+PRESSURE 1
+# patch edge
+  1     4
+
+MATERIAL 1
+# E      nu  rho patches
+  1000.0 0.3 0.0 1

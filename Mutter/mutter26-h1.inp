@@ -1,0 +1,9 @@
+# $Id: mutter26-h1.inp,v 1.1 2010-04-15 07:28:00 kmo Exp $
+
+PATCHFILE A2_vol26.g2
+
+TOPOLOGYFILE A2_vol26.rel
+
+MATERIAL 1
+# E        nu  rho    patches
+  206000.0 0.3 7.85e-9 ALL

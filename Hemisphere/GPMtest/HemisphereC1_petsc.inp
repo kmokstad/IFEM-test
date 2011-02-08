@@ -1,0 +1,31 @@
+# Run in parallel by: 
+# mpiexec -np 4 linel3D -petsc HemisphereC1_petsc.inp
+PARTITIONING 4
+# proc first last
+  0    1     1
+  1    2     2
+  2    3     3
+  3    4     4
+
+PATCHFILE    HemisphereC1.g2
+NODEFILE     HemisphereC1_petsc.gno
+PROPERTYFILE Hemisphere.prc
+
+DIRICHLET 3
+# code
+  1
+  2
+  3
+
+CONSTANT_PRESSURE 1
+# code direction pressure
+  4    0         -100.0
+
+ISOTROPHIC 1
+# code E       nu  rho
+  0    6.825e7 0.3 0.0
+
+LINEARSOLVER 3
+type    = preonly
+pc      = lu
+package = superlu_dist

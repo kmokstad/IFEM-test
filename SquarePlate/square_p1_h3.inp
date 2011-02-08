@@ -1,0 +1,29 @@
+# $Id: square_p1_h3.inp,v 1.2 2009-10-15 18:25:55 kmo Exp $
+
+PATCHES 1
+plate_10x10x01.g2
+
+REFINE 1
+# patch ru rv rw
+  1     15 15  1
+
+CONSTRAINTS 4
+# patch line code par
+  1     11   3    0.5
+  1     12   3    0.5
+  1     23   3    0.5
+  1     24   3    0.5
+
+FIXPOINTS 2
+# patch rx  ry  rz  code
+  1     0.0 0.0 0.5 123
+  1     0.0 1.0 0.5 13
+
+PRESSURE 2
+# patch face direction pressure
+  1     1    1          10.0
+  1     2    1         -10.0
+
+MATERIAL 1
+# E     nu  rho patches
+  10.92 0.3 1.0 1

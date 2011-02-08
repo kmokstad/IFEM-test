@@ -1,0 +1,31 @@
+# $Id: TBar-p3-h1x7.inp,v 1.1 2011-01-27 17:19:15 kmo Exp $
+# 3D Square bar with a linearly increasing end twist.
+
+PATCHFILE squareShortBeam.g2
+
+RAISEORDER 1
+# patch ru rv rw
+  1     2  2  2
+
+REFINE 1
+# patch ru rv rw
+  1     0  0  6
+
+CONSTRAINTS 4
+# patch face code
+  1     5    123
+  1     6      1 1.0 XrotZ 0.5 0.5
+  1     6      2 1.0 YrotZ 0.5 0.5
+  1     6      3
+
+MATERIAL 1
+# kappa    mu      rho patches
+  400942.0 80.1938 0.0 1
+
+TIME_STEPPING
+# start stop dt
+  0.0   30.0 0.01
+
+NONLINEAR_SOLVER
+# maxit convTol
+  20    1.0e-8

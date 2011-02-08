@@ -1,0 +1,24 @@
+# $Id: Stokes2D.inp,v 1.1 2010-03-24 13:02:49 rho Exp $
+# 2D Cantilever beam with a tip shear load.
+
+PATCHES 1
+beam2D.g2
+
+REFINE 1
+# patch ru rv
+  1     79 159
+
+CONSTRAINTS 2
+# patch edge code value
+  1     3    12   0.0
+  1     4    12   0.0
+
+PRESSURE 2
+# patch edge direction pressure
+  1     1    1         50000.0
+  1     2    1         0.0
+
+PROPERTIES 1
+# mu       rho
+  1.0      1.0   
+

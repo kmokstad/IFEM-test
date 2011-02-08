@@ -1,0 +1,9 @@
+# $Id: StiffPanel_free.inp,v 1.1 2009-06-09 07:00:17 kmo Exp $
+
+PATCHFILE stiffPanel.g2
+
+TOPOLOGYFILE stiffPanel.rel
+
+MATERIAL 1
+# E        nu  rho     patches
+  206000.0 0.3 7.85e-9 ALL

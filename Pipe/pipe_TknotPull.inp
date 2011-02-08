@@ -1,0 +1,18 @@
+# $Id: pipe_TknotPull.inp,v 1.2 2010-09-14 07:27:50 kmo Exp $
+
+PATCHFILE    pipe_trifucation.g2
+NODEFILE     pipe_trifucation.gno
+PROPERTYFILE pipe_trifucation.prc
+
+DIRICHLET 2
+# code
+  123
+ 1001 1.0 1.0
+
+TIME_STEPPING
+# start stop dt
+  0.0   30.0 1.0
+
+NONLINEAR_SOLVER
+# maxit convTol
+  20    1.0e-6
