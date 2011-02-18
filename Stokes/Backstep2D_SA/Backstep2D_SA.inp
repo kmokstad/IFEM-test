@@ -1,0 +1,60 @@
+PATCHFILE Backstep2D_SA.g2
+NODEFILE  Backstep2D_SA.gno
+PROPERTYFILE Backstep2D_SA.prc
+
+DIRICHLET 3
+# code value
+  1    1.0 quadY 0.0 2.0
+  2    
+  12
+
+PRESSURE 2
+# patch edge direction pressure
+  2     2    0         0.0
+  3     2    0         0.0
+
+PROPERTIES 
+# mu       rho
+  0.00125  1.0
+
+GRAVITY 0.0 0.0
+
+TIME_STEPPING
+# startTime stopTime dt
+  0.0       0.1     0.005
+
+VISUALIZATION
+# format increment
+  1      1
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = ml
+package = petsc
+levels = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 5000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 1000
