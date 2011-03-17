@@ -20,9 +20,9 @@ PRESSURE 1
 # patch face dir pval     linear
   1     2    3   18223.95 1.0
 
-MATERIAL 1
-# E     nu  rho patches
-  1.0e8 0.0 0.0 1
+ISOTROPIC 1
+# code E     nu  rho
+  0    1.0e8 0.0 0.0
 
 TIME_STEPPING
 # start stop dt

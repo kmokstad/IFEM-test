@@ -22,6 +22,6 @@ CONSTRAINTS 3
 # Specifier       a   b     u0  E
 ANASOL CurvedBeam 5.0 10.0 -0.1 9600.0
 
-MATERIAL 1
-# E      nu  rho patches
-  9600.0 0.2 0.0 1
+ISOTROPIC 1
+# code E      nu  rho
+  0    9600.0 0.2 0.0

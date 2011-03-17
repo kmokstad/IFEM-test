@@ -23,9 +23,9 @@ LINEAR_PRESSURE 2
   4    1         -235.0
   5    1          235.0
 
-ISOTROPHIC 1
-# code E     nu  rho
-  0    16800 0.4 0.0
+ISOTROPIC 1
+# code E     nu  rho mVER
+  0    16800 0.4 0.0 3
 
 TIME_STEPPING
 # start stop dt

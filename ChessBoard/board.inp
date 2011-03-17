@@ -1,8 +1,11 @@
+# $Id$
+# Chess board with different material for the pieces and the board itself.
+
 PATCHFILE    Chess.g2
 NODEFILE     Chess.gno
 PROPERTYFILE Chess.prc
 
-ISOTROPHIC 2
+ISOTROPIC 2
 # code E      nu  rho
   1    2.1e11 0.3 7850.0
   9999 2.1e10 0.3 7850.0
