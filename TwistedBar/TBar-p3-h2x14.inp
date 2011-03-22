@@ -1,4 +1,4 @@
-# $Id: TBar-p3-h2x14.inp,v 1.1 2011-01-27 17:19:15 kmo Exp $
+# $Id$
 # 3D Square bar with a linearly increasing end twist.
 
 PATCHFILE squareShortBeam.g2
@@ -19,13 +19,13 @@ CONSTRAINTS 4
   1     6      3
 
 ISOTROPIC 1
-# code kappa    mu      rho mVER
-  0    400942.0 80.1938 0.0 11
+# code kappa      mu        rho mVER
+  0    400942.0e6 80.1938e6 0.0 11
 
 TIME_STEPPING
 # start stop dt
-  0.0   50.0 0.01
+  0.0   30.0 0.01
 
 NONLINEAR_SOLVER
-# maxit convTol divgLim
-  20    1.0e-6  100.0
+# maxit convTol
+  20    1.0e-12

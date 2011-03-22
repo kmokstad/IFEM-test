@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: run.sh,v 1.1 2011-01-27 17:19:15 kmo Exp $
+# $Id$
 # Legend: Std - Standard displacement formulation
 #         Mix - Mixed formulation with internal discontinuous pressure field
 #         Mixed - Mixed formulation with continuous pressure/volumetric change field
