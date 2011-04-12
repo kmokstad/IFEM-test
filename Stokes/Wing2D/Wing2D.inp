@@ -1,0 +1,63 @@
+PATCHFILE    Wing2D.g2
+NODEFILE     Wing2D.gno
+PROPERTYFILE Wing2D.prc
+
+DIRICHLET 3
+# code value
+  1    1.0 Tinit 1.0  
+  2
+  12
+
+CONSTANT_PRESSURE 1
+# code direction value
+  1001 0         0.0
+
+PROPERTIES
+# mu      rho
+  0.0025  1.0
+
+GRAVITY 0.0 0.0
+
+BOUNDARY_FORCE
+# code filename  increment
+  12   force.dat 4
+
+TIME_STEPPING
+# startTime stopTime dt
+  0.0       50       0.0025
+
+VISUALIZATION
+# format increment
+  1      40
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = ilu
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = ilu
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 5000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
