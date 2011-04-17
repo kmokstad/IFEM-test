@@ -1,0 +1,70 @@
+# $Id$
+# Gnuplot script to generate the NSCM-23 plots.
+
+set grid
+set key bottom
+set logscale x
+set xlabel "Number of degrees of freedom"
+set ylabel "Max vertical deflection"
+
+set yrange [12:15.5]
+plot \
+'Cyl-p4.dat' using 1:2 title 'p=4, p=4 over thickness' with linespoints, \
+'Cyl_p4.dat' using 1:2 title 'p=4, p=3 over thickness' with linespoints, \
+'Cyl-p3.dat' using 1:2 title 'p=3, p=3 over thickness' with linespoints, \
+'Cyl_p3.dat' using 1:2 title 'p=3, p=2 over thickness' with linespoints
+pause -1 "Hit <RETURN> to continue: "
+set term png
+set output "cylinder-disp-pt.png"
+replot
+
+set yrange [10:15.5]
+set term pop
+plot \
+'Cyl-p4.dat' using 1:2 title 'NURBS p=4' with linespoints 1, \
+'Cyl-p3.dat' using 1:2 title 'NURBS p=3' with linespoints 2, \
+'Cyl-p2.dat' using 1:2 title 'NURBS p=2' with linespoints 3
+pause -1 "Hit <RETURN> to continue: "
+set term png
+set output "cylinder-disp-N.png"
+replot
+
+set term pop
+plot \
+'Lagrange-Cyl-p4.dat' using 1:2 title 'Lagrange p=4' with linespoints 4, \
+'Lagrange-Cyl-p3.dat' using 1:2 title 'Lagrange p=3' with linespoints 5, \
+'Lagrange-Cyl-p2.dat' using 1:2 title 'Lagrange p=2' with linespoints 6, \
+'Cyl-p4.dat' using 1:2 title 'NURBS p=4' with linespoints 1, \
+'Cyl-p3.dat' using 1:2 title 'NURBS p=3' with linespoints 2, \
+'Cyl-p2.dat' using 1:2 title 'NURBS p=2' with linespoints 3
+pause -1 "Hit <RETURN> to continue: "
+set term png
+set output "cylinder-disp-NL.png"
+replot
+
+set yrange [*:*]
+set logscale xy
+set key left bottom
+set ylabel 'Energy norm error [%]'
+set term pop
+plot \
+'Cyl-p4.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=4' with linespoints 1, \
+'Cyl-p3.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=3' with linespoints 2, \
+'Cyl-p2.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=2' with linespoints 3
+pause -1 "Hit <RETURN> to continue: "
+set term png
+set output "cylinder-error-N.png"
+replot
+
+set term pop
+plot \
+'Lagrange-Cyl-p4.dat' using 1:(abs($3-235.044)/2.35044) title 'Lagrange p=4' with linespoints 4, \
+'Lagrange-Cyl-p3.dat' using 1:(abs($3-235.044)/2.35044) title 'Lagrange p=3' with linespoints 5, \
+'Lagrange-Cyl-p2.dat' using 1:(abs($3-235.044)/2.35044) title 'Lagrange p=2' with linespoints 6, \
+'Cyl-p4.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=4' with linespoints 1, \
+'Cyl-p3.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=3' with linespoints 2, \
+'Cyl-p2.dat' using 1:(abs($3-235.044)/2.35044) title 'NURBS p=2' with linespoints 3
+pause -1 "Hit <RETURN> to continue: "
+set term png
+set output "cylinder-error-NL.png"
+replot

@@ -1,4 +1,4 @@
-# $Id: Cyl-p4-h3.inp,v 1.3 2010-11-09 14:31:24 kmo Exp $
+# $Id$
 # Compression of a thick hollow cylinder, nonlinear analysis
 
 PATCHFILE half_pipe.g2

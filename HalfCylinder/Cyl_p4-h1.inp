@@ -1,4 +1,4 @@
-# $Id: Cyl_p4-h1.inp,v 1.3 2010-11-09 14:31:24 kmo Exp $
+# $Id$
 # Compression of a thick hollow cylinder, nonlinear analysis
 
 PATCHFILE half_pipe.g2
@@ -29,7 +29,7 @@ ISOTROPIC 1
 
 TIME_STEPPING
 # start stop dt
-  0.0   1.0  1.0
+  0.0   1.0  0.25
 
 NONLINEAR_SOLVER
 # maxit convTol divgLim
