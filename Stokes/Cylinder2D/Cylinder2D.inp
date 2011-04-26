@@ -1,0 +1,62 @@
+PATCHFILE cylinder2D.g2
+NODEFILE  cylinder2D.gno
+
+CONSTRAINTS 10
+# patch edge code value
+  1     1    2    
+  1     2    12
+  2     2    12
+  2     1    2
+  2     1    1    0.01 Y 1.0 
+  3     1    2
+  3     2    12
+  4     2    12
+  5     3    2
+  5     4    2
+
+PRESSURE 1
+# patch edge direction pressure
+  5     2    0         0.0
+
+PROPERTIES 
+# mu     rho
+  0.01   1.0
+
+GRAVITY 0.0 0.0
+
+TIME_STEPPING
+# startTime stopTime dt
+#  0.0       30.0     0.001
+  0.0       1.0    0.005
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = ilu
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 5000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-6
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
