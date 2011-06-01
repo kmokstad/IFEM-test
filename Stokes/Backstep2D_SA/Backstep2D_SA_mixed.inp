@@ -1,0 +1,68 @@
+#PARTITIONING 3
+# proc first last
+#  0    1     1
+#  1    2     2
+#  2    3     3
+
+VELOCITY_PATCHFILE Backstep2D_SA_p2.g2
+VELOCITY_NODEFILE  Backstep2D_SA_p2.gno
+PRESSURE_PATCHFILE Backstep2D_SA_p1.g2
+PRESSURE_NODEFILE  Backstep2D_SA_p1.gno
+PROPERTYFILE Backstep2D_SA_mixed.prc
+
+DIRICHLET 3
+# code value
+  1    1.0 quadY 0.0 2.0 Tinit 1.0
+  2    
+  12
+
+PRESSURE 2
+# patch edge direction pressure
+  2     2    0         0.0
+  3     2    0         0.0
+
+PROPERTIES 
+# mu         rho
+  0.01       1.0
+
+GRAVITY 0.0 0.0
+
+TIME_STEPPING
+# startTime stopTime dt
+  0.0       150.0    0.5
+
+VISUALIZATION
+# format increment
+  1      2
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = ilu
+package = petsc
+levels = 2
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = ilu
+package = petsc
+overlap = 5
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 5000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = ilu
+package = petsc
+levels = 2
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 1000
