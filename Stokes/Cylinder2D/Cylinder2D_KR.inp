@@ -1,0 +1,63 @@
+PATCHFILE cylinder2D_SA_d_0_1.g2
+NODEFILE  cylinder2D_SA_d_0_1.gno
+PROPERTYFILE cylinder2D_KR.prc
+
+DIRICHLET 3
+# code value
+  1    2.65
+  2
+  12
+
+CONSTANT_PRESSURE 1
+# code direction value
+  1001 0         0.0
+
+PROPERTIES 
+# mu     rho
+  0.001  1.0
+
+GRAVITY 0.0 0.0
+
+BOUNDARY_FORCE
+# code filename  increment
+  12   force.dat 10
+
+TIME_STEPPING
+# startTime stopTime dt
+  0.0       3.0      0.001
+
+VISUALIZATION
+# format increment
+  1      1
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = ilu
+package = petsc
+overlap = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 10000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = ilu
+package = petsc
+overlap = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 10000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = ilu
+package = petsc
+overlap = 2
+atol   = 1.0e-12
+rtol   = 1.0e-12
+dtol   = 1.0e6
+maxits = 10000
