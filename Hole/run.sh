@@ -15,13 +15,13 @@ runSplineSol Hole1-p3.inp -vtf 1 -nu 4 -nv 4
 runSplineSol Hole2-p3.inp -vtf 1 -nu 4 -nv 4
 runSplineSol Hole3-p3.inp -vtf 1 -nu 4 -nv 4
 runSplineSol Hole4-p3.inp -vtf 1 -nu 4 -nv 4
-runSplineSol Hole2D0-p1.inp -vtf 1 -2D
-runSplineSol Hole2D1-p1.inp -vtf 1 -2D
-runSplineSol Hole2D2-p1.inp -vtf 1 -2D
-runSplineSol Hole2D3-p1.inp -vtf 1 -2D
-runSplineSol Hole2D4-p1.inp -vtf 1 -2D
+runSplineSol Hole2D0-p1.inp -vtf 1 -2Dpstrain
+runSplineSol Hole2D1-p1.inp -vtf 1 -2Dpstrain
+runSplineSol Hole2D2-p1.inp -vtf 1 -2Dpstrain
+runSplineSol Hole2D3-p1.inp -vtf 1 -2Dpstrain
+runSplineSol Hole2D4-p1.inp -vtf 1 -2Dpstrain
 awk -f ../error.awk Hole2D?-p1.log > Hole2D-p1.err
 runSplineSol -prefix Lagrange- Hole2-p2.inp -vtf 1 -lag
 runSplineSol -prefix Spectral- Hole2-p2.inp -vtf 1 -spec
-runSplineSol -prefix Lagrange- Hole2D2-p1.inp -vtf 1 -2D -lag
-runSplineSol -prefix Spectral- Hole2D2-p1.inp -vtf 1 -2D -spec
+runSplineSol -prefix Lagrange- Hole2D2-p1.inp -vtf 1 -2Dpstrain -lag
+runSplineSol -prefix Spectral- Hole2D2-p1.inp -vtf 1 -2Dpstrain -spec
