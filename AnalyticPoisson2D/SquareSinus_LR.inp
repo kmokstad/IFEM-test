@@ -1,0 +1,20 @@
+# This example has a smooth solution that exhibits a steep interior layer (Poisson equation on unit square)
+
+PATCHFILE    unitSquare.g2
+PROPERTYFILE SquareSinus.prc
+
+DIRICHLET 1
+# code
+   1
+
+# Analytical solution
+#     Specifier        Neumann-code
+ANASOL SINUSSQUARE       1000
+
+# MATERIAL 1
+# Kappa  patches
+#    1       1
+
+# refine to 66 x 66 DOFs
+LRREFINE UNIFORM 4356
+
