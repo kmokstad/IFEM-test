@@ -1,0 +1,39 @@
+# $Id$
+# Simply supported square plate with partial pressure load.
+# Quadratic spline Kirchhoff-Love thin plate elements.
+
+PATCHFILE ../plate_10x10.g2
+
+REFINE 3
+# patch dir xi
+  1     1   0.248 0.496 0.504 0.752
+  1     2   0.248 0.496 0.504 0.752
+# patch ru rv
+  1     0  0   <- extra knots
+
+CONSTRAINTS 4
+# patch edge code
+  1     1    1
+  1     2    1
+  1     3    1
+  1     4    1
+
+ISOTROPIC 1
+# code E      nu  rho   t
+  0    2.1e11 0.3 1.0e3 0.1
+
+PRESSURE 1
+# code pz    ----- spatial variation -----
+  0    1.0e3 StepXY 4.96 4.96 to 5.04 5.04
+
+# Analytical solution
+# Specifier        a    b    t   E      nu  pz    xi  eta c    d
+ANASOL NavierPlate 10.0 10.0 0.1 2.1e11 0.3 1.0e3 0.5 0.5 0.08 0.08
+
+RESULTPOINTS 1
+# patch xi eta
+  1     0.5 0.5
+
+ADAPTIVE
+# beta errTol maxStep maxDOFs mult minSpan
+  10.0 1.0    10      10000   1    1
