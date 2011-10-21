@@ -1,0 +1,26 @@
+#PARTITIONING 5
+#0 1 1
+#1 2 2
+#2 3 3
+#3 4 4
+#4 5 5
+
+PATCHFILE backstep5.g2
+NODEFILE  backstep5.gno
+PROPERTYFILE       backstep-FS.prc
+
+DIRICHLET 1
+# code value
+  1   1 
+
+WALL_VALUE 1
+
+LINEARSOLVER 8
+type    = gmres
+pc      = asm
+package = petsc
+overlap = 1
+atol   = 1.0e-10
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000

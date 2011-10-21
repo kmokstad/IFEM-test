@@ -1,0 +1,70 @@
+#PARTITIONING 5
+#0 1 1
+#1 2 2
+#2 3 3
+#3 4 4
+#4 5 5
+
+PATCHFILE    backstep5.g2
+NODEFILE     backstep5.gno
+PROPERTYFILE backstep.prc
+
+DIRICHLET 3
+# code value
+  1    1.0 Interpolate1D u.asc 1 Tinit 0.1
+  2
+  12
+
+CONSTANT_PRESSURE 1
+# code direction value
+  1001 0         0.0
+
+PROPERTIES
+# mu         rho
+  0.000331    1.0
+
+GRAVITY 0.0 0.0
+
+#BOUNDARY_FORCE
+# code filename         increment
+#  12   force_Re_800.dat 2
+
+TIME_STEPPING
+# startTime stopTime dt
+   0.0      0.001    0.001
+
+VISUALIZATION
+#format interval
+1 10
+
+LINEARSOLVER_PREDICTION 8
+type    = gmres
+pc      = asm
+package = petsc
+overlap = 1
+atol   = 1.0e-10
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_PRESSURE 8
+type    = cg
+pc      = asm
+package = petsc
+overlap = 1
+atol   = 1.0e-10
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
+
+
+LINEARSOLVER_CORRECTION 8
+type    = cg
+pc      = asm
+package = petsc
+overlap = 1
+atol   = 1.0e-10
+rtol   = 1.0e-6
+dtol   = 1.0e6
+maxits = 1000
