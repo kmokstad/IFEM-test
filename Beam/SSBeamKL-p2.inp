@@ -1,0 +1,18 @@
+# $Id$
+
+PATCHFILE beam1D.g2
+
+REFINE 1
+# patch ru
+  1     9
+
+CONSTRAINTS 2
+# patch end code
+  1     1   1
+  1     2   1
+
+ISOTROPIC 1
+# code E        rho    thickness
+  0    2.068e11 7820.0 0.1
+
+GRAVITY 9.81
