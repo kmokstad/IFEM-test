@@ -10,7 +10,8 @@ DIRICHLET 1
 
 # Analytical solution
 #     Specifier        Neumann-code
-ANASOL SINUSSQUARE       1000
+SOURCE Eval -8*PI*PI*sin(2*PI*x)*sin(2*PI*y)
+ANASOL Eval Primary=sin(2*PI*x)*cos(2*PI*y) Secondary=2*PI*cos(2*PI*x)*sin(2*PI*y)|2*PI*sin(2*PI*x)*cos(2*PI*y)|0 1000
 
 # MATERIAL 1
 # Kappa  patches
