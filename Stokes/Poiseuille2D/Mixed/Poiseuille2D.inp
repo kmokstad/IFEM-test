@@ -1,0 +1,61 @@
+VELOCITY_PATCHFILE channel2D_3.g2
+VELOCITY_NODEFILE  channel2D_3.gno
+PRESSURE_PATCHFILE channel2D_3_p1.g2
+PRESSURE_NODEFILE  channel2D_3_p1.gno channel2D_3_p1p2.gno
+PROPERTYFILE channel2D.prc
+
+DIRICHLET 3
+#code value
+1  1.0 quadY 0.0 1.0 
+2  
+12
+
+CONSTANT_PRESSURE 1
+#code direction value
+1001  0         0.0 
+
+PROPERTIES 
+# mu   rho
+  0.01 1.0
+
+GRAVITY 0.0 0.0
+
+TIME_STEPPING
+# startTime stopTime dt
+  0.0       1.0    0.1
+
+VISUALIZATION
+# format increment
+  1      1
+
+PREDICTION_LINEARSOLVER 8
+type    = gmres
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 1000
+
+
+PRESSURE_LINEARSOLVER 8
+type    = cg
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 5000
+
+
+CORRECTION_LINEARSOLVER 8
+type    = cg
+pc      = jacobi
+package = petsc
+levels = 2
+atol   = 1.0e-20
+rtol   = 1.0e-20
+dtol   = 1.0e6
+maxits = 1000
