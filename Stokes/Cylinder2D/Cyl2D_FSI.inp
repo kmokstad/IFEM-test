@@ -1,10 +1,10 @@
-PATCHFILE cylinder2D.g2
-NODEFILE cylinder2D.gno
-PROPERTYFILE cylinder2D.prc
+PATCHFILE Cyl2D_p2p2Re80_G1.g2
+NODEFILE Cyl2D_p2p2Re80_G1.gno
+PROPERTYFILE Cyl2D_p2p2.prc
 
-ALE_PATCHFILE cylinder2D.g2
-ALE_NODEFILE cylinder2D.gno
-ALE_PROPERTYFILE cylinder2D-ALE.prc
+ALE_PATCHFILE Cyl2D_p2p2Re80_G1.g2
+ALE_NODEFILE Cyl2D_p2p2Re80_G1.gno
+ALE_PROPERTYFILE Cyl2D_p2p2-ALE.prc
 
 ALE_ISOTROPIC 1
 # code E   nu  rho
@@ -12,7 +12,7 @@ ALE_ISOTROPIC 1
 
 DIRICHLET 2
 # code value
-  1    0.01 Y 1.0
+  1    0.01 Y 0.8
   2
 
 CONSTANT_PRESSURE 1
@@ -23,7 +23,7 @@ FSI_DIRICHLET 1
 # code
   1012
 
-PROPERTIES
+PROPERTIES 
 # mu   rho
   0.01 1.0
 
@@ -31,15 +31,15 @@ GRAVITY 0.0 0.0
 
 BOUNDARY_FORCE
 # code filename  increment
-  1012 force.dat 1
-
+  1012 force.dat 1              
+  
 OSCILLATOR
 # X0x X0y X0th  dX0x dX0y dX0th  ddX0x ddX0y ddX0th  Mx  My  Mth  Cx  Cy  Cth  Kx   Ky   Kth   filename
-  0.5 0.0 0.0   0.0  0.0  0.0    0.0   0.0   0.0     5.0 5.0 5.0 0.1 0.1 0.01 0.02 0.02 0.75  Osc2_output.dat
+  0.0 0.0 0.0   0.0  0.0  0.0    0.0   0.0   0.0     5.0 5.0 5.0 0.1 0.1 0.01 0.02 0.02 0.75  Osc2_output.dat
 
 TIME_STEPPING
 # startTime stopTime dt
-  0.0       150.0    0.001
+  0.0       0.005    0.001
 
 VISUALIZATION
 # format increment
