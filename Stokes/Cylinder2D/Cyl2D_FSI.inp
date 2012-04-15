@@ -6,44 +6,52 @@ ALE_PATCHFILE Cyl2D_p2p2Re80_G1.g2
 ALE_NODEFILE Cyl2D_p2p2Re80_G1.gno
 ALE_PROPERTYFILE Cyl2D_p2p2-ALE.prc
 
+PROPERTIES
+# mu   rho
+  0.01 1.0
+
+OSCILLATOR
+# Define properties of the structural oscillator.
+# NB: This must be before the FSI_DIRICHLET record on the input file.
+# X0x X0y X0th  dX0x dX0y dX0th  ddX0x ddX0y ddX0th  Mx  My  Mth  Cx  Cy  Cth  Kx   Ky   Kth   filename
+  0.0 0.0 0.0   0.0  0.0  0.0    0.0   0.0   0.0     1.0 1.0 0.5  0.1 0.1 0.01 0.02 0.02 0.75  Osc2_output.dat
+
 ALE_ISOTROPIC 1
-# code E   nu  rho
-  0    1.0 0.3 0.0
+# code E   nu (constant stiffness)
+# 0    1.0 0.3
+# code E0    nu  E1    r1  E2   r2  E3  r3  ... (piece-wise linear stiffness)
+# 0    1.0e6 0.3 1.0e6 0.5 10.0 2.0 1.0 5.0
+# code Efunc (stiffness as a general function of the radius r) nu
+  0    1+if(above(r,5.5),0,500*(1+cos((r-0.5)*PI/5)))          0.3
+
+ALE_NONLINEAR_SOLVER
+# maxit convTol
+  20    1.0e-16
 
 DIRICHLET 2
 # code value
   1    0.01 Y 0.8
   2
 
-CONSTANT_PRESSURE 1
-# code direction value
-  1001 0         0.0
-
 FSI_DIRICHLET 1
 # code
   1012
 
-PROPERTIES 
-# mu   rho
-  0.01 1.0
-
-GRAVITY 0.0 0.0
+CONSTANT_PRESSURE 1
+# code direction value
+  1001 0         0.0
 
 BOUNDARY_FORCE
 # code filename  increment
-  1012 force.dat 1              
-  
-OSCILLATOR
-# X0x X0y X0th  dX0x dX0y dX0th  ddX0x ddX0y ddX0th  Mx  My  Mth  Cx  Cy  Cth  Kx   Ky   Kth   filename
-  0.0 0.0 0.0   0.0  0.0  0.0    0.0   0.0   0.0     5.0 5.0 5.0 0.1 0.1 0.01 0.02 0.02 0.75  Osc2_output.dat
+  1012 force.dat 1
 
 TIME_STEPPING
 # startTime stopTime dt
-  0.0       0.005    0.001
+  0.0       1.0      0.001
 
 VISUALIZATION
 # format increment
-  1      1
+  1      10
 
 PREDICTION_LINEARSOLVER 8
 type    = gmres
