@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<simulation>
+  <!-- General - boundary conditions !-->
+    <geometry>
+          <patchfile type="bsplines">Cyl2D_p2p2Re80_G1.g2</patchfile>
+          <nodefile>Cyl2D_p2p2Re80_G1.gno</nodefile>
+    </geometry>
+    <boundaryconditions>
+        <propertycodes>
+            <code value="1">
+                <patch index="3" vertex="4"/>
+                <patch index="4" edge="2"/>
+                <patch index="5" vertex="2"/>
+            </code>
+            <code value="2">
+                <patch index="1" edge="3"/>
+                <patch index="1" edge="4"/>
+                <patch index="2" vertex="2"/>
+                <patch index="2" vertex="4"/>
+                <patch index="3" edge="2"/>
+                <patch index="4" edge="2"/>
+                <patch index="5" edge="2"/>
+            </code>
+            <code value="12">
+                <patch index="4" edge="2"/>
+                <patch index="3" edge="2"/>
+                <patch index="5" edge="2"/>
+                <patch index="1" edge="4"/>
+                <patch index="1" edge="2"/>
+                <patch index="1" edge="3"/>
+            </code>
+            <code value="1012">
+                <patch index="2" edge="1"/>
+                <patch index="3" edge="1"/>
+                <patch index="4" edge="1"/>
+                <patch index="5" edge="1"/>
+            </code>
+            <code value="1001">
+                <patch index="1" edge="2"/>
+            </code>
+        </propertycodes>
+    </boundaryconditions>
+    <fsi>
+      <oscillator x0x="0.0"   x0y="0.0"   x0th="0.0"   dx0X="0.0" dX0y="0.0"
+                  dX0th="0.0" ddX0x="0.0" ddX0th="0.0" Mx="1.0"   My="1.0"
+                  Mth="0.5"   Cx="0.1"    Cy="0.1"     Cth="0.01" Kx="0.02" 
+                  Ky="0.02"   Kth="0.75"  file="Osc2_output.dat"/>
+        <coupling code="1012"/>
+<!--        <isotropic code="0" E="1.0" nu="0.3"/>-->
+<!--           <isotropic code="0" type="piecewise">1.0e6 0.3 1.0e6 0.5 10.0 2.0 1.0 5.0</isotropic>-->
+        <isotropic code="0" type="radialfunction" nu="0.3">1+if(above(r,5.5),0,500*(1+cos((r-0.5)*PI/5)))</isotropic>
+        <boundaryconditions>
+            <dirichlet code="1" type="expression">0.01*y+0.8</dirichlet>
+            <dirichlet code="2"/>
+        </boundaryconditions>
+        <nonlinearsolver>
+          <maxits>20</maxits>
+          <rtol>1.0e-16</rtol>
+        </nonlinearsolver>
+    </fsi>
+    <chorin>
+        <timestepping start="0" end="0.5" step="0.1"/>
+        <fluidproperties mu="0.01" rho="1.0"/>
+        <constantpressure code="1001" dir="1"/>
+        <boundaryconditions>
+            <dirichlet code="1" type="expression">0.01*y+0.8</dirichlet>
+            <dirichlet code="2"/>
+        </boundaryconditions>
+        <boundaryforce file="force.dat" stride="1" code="1012"/>
+    </chorin>
+    <velocityprediction>
+        <linearsolver>
+            <type>gmres</type>
+            <pc>ilu</pc>
+            <package>petsc</package>
+            <levels>2</levels>
+            <atol>1.0e-12</atol>
+            <rtol>1.0e-12</rtol>
+            <dtol>1.0e6</dtol>
+            <maxits>10000</maxits>
+        </linearsolver>
+    </velocityprediction>
+    <pressurecorrection>
+        <linearsolver>
+            <type>cg</type>
+            <pc>ilu</pc>
+            <package>petsc</package>
+            <levels>2</levels>
+            <atol>1.0e-12</atol>
+            <rtol>1.0e-12</rtol>
+            <dtol>1.0e6</dtol>
+            <maxits>10000</maxits>
+        </linearsolver>
+    </pressurecorrection>
+    <velocitycorrection>
+        <linearsolver>
+            <type>cg</type>
+            <pc>ilu</pc>
+            <package>petsc</package>
+            <levels>2</levels>
+            <atol>1.0e-12</atol>
+            <rtol>1.0e-12</rtol>
+            <dtol>1.0e6</dtol>
+            <maxits>10000</maxits>
+        </linearsolver>
+    </velocitycorrection>
+</simulation>
