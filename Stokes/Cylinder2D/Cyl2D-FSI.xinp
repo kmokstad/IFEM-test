@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+
+  <geometry>
+    <patchfile>Cyl2D_p2p2Re80_G1.g2</patchfile>
+    <nodefile>Cyl2D_p2p2Re80_G1.gno</nodefile>
+    <topologysets>
+      <set name="inflow" type="edge">
+        <item patch="4">2</item>
+      </set>
+      <set name="inflow" type="vertex">
+        <item patch="3">4</item>
+        <item patch="5">2</item>
+      </set>
+      <set name="outflow" type="edge">
+        <item patch="1">2</item>
+      </set>
+      <set name="slipwalls" type="edge">
+        <item patch="1">3 4</item>
+	<item patch="3">2</item>
+        <item patch="4">2</item>
+        <item patch="5">2</item>
+      </set>
+      <set name="slipwalls" type="vertex">
+        <item patch="2">2 4</item>
+      </set>
+      <set name="cylinder" type="edge">
+        <item patch="2">1</item>
+        <item patch="3">1</item>
+        <item patch="4">1</item>
+        <item patch="5">1</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <fsi>
+    <oscillator Mx="1.0"  My="1.0"  Mth="0.5"
+                Cx="0.1"  Cy="0.1"  Cth="0.01"
+                Kx="0.02" Ky="0.02" Kth="0.75"
+                file="Osc2_output.dat"/>
+<!-- Alternative format
+    <oscillator file="Osc2_output.dat">
+      0.0  0.0  0.0
+      0.0  0.0  0.0
+      0.0  0.0  0.0
+      1.0  1.0  0.5
+      0.1  0.1  0.01
+      0.02 0.02 0.75
+    </oscillator>
+!-->
+    <isotropic type="radialfunction" nu="0.3">
+      D=0.5; R=5.0;
+      1+if(above(r,D+R),0,500*(1+cos((r-D)*PI/R)))
+    </isotropic>
+<!-- Alternative grid stiffness definitions (constant and piece-wise linear, respectively)
+    <isotropic E="1.0" nu="0.3"/>
+    <isotropic E="1.0e6" nu="0.3">
+      1.0e6 0.5 10.0 2.0 1.0 5.0
+    </isotropic>
+!-->
+    <coupling set="cylinder"/>
+    <boundaryconditions>
+      <dirichlet set="slipwalls" comp="12"/>
+      <dirichlet set="outflow" comp="12"/>
+    </boundaryconditions>
+    <nonlinearsolver>
+      <maxits>20</maxits>
+      <rtol>1.0e-16</rtol>
+    </nonlinearsolver>
+  </fsi>
+
+  <chorin>
+    <timestepping start="0" end="1" step="0.001"/>
+    <fluidproperties mu="0.01" rho="1.0"/>
+    <boundaryforce set="cylinder" file="force.dat" stride="1"/>
+  </chorin>
+
+  <velocityprediction>
+    <boundaryconditions>
+      <dirichlet set="inflow" comp="1" type="expression">0.01*y+0.8</dirichlet>
+      <dirichlet set="slipwalls" comp="2"/>
+    </boundaryconditions>
+    <linearsolver>
+      <type>gmres</type>
+      <pc>ilu</pc>
+      <package>petsc</package>
+      <levels>2</levels>
+      <atol>1.0e-12</atol>
+      <rtol>1.0e-12</rtol>
+      <dtol>1.0e6</dtol>
+      <maxits>10000</maxits>
+    </linearsolver>
+  </velocityprediction>
+
+  <pressurecorrection>
+    <boundaryconditions>
+      <dirichlet set="outflow" comp="1"/>
+    </boundaryconditions>
+    <linearsolver>
+      <type>cg</type>
+      <pc>ilu</pc>
+      <package>petsc</package>
+      <levels>2</levels>
+      <atol>1.0e-12</atol>
+      <rtol>1.0e-12</rtol>
+      <dtol>1.0e6</dtol>
+      <maxits>10000</maxits>
+    </linearsolver>
+  </pressurecorrection>
+
+  <velocitycorrection>
+    <boundaryconditions>
+      <dirichlet set="inflow" comp="1" type="expression">0.01*y+0.8</dirichlet>
+      <dirichlet set="slipwalls" comp="2"/>
+    </boundaryconditions>
+    <linearsolver>
+      <type>cg</type>
+      <pc>ilu</pc>
+      <package>petsc</package>
+      <levels>2</levels>
+      <atol>1.0e-12</atol>
+      <rtol>1.0e-12</rtol>
+      <dtol>1.0e6</dtol>
+      <maxits>10000</maxits>
+    </linearsolver>
+  </velocitycorrection>
+
+</simulation>
