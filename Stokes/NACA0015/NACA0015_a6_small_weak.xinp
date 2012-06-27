@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+ 
+  <geometry>
+    <patchfile>NACA0015_a6_small_p2.g2</patchfile>
+    <nodefile>NACA0015_a6_small_p2.gno</nodefile>
+    <topologysets>
+      <set name="inflow" type="edge">
+        <item patch="6">4</item>
+	<item patch="8">2</item>
+      </set>
+      <set name="inflow" type="vertex">
+        <item patch="4">4</item>
+        <item patch="10">3</item>
+      </set>
+      <set name="slipwalls" type="edge">
+        <item patch="2">4</item>
+        <item patch="4">4</item>
+	<item patch="6">4</item>
+        <item patch="8">2</item>
+	<item patch="10">4</item>
+        <item patch="12">4</item>
+      </set>
+      <set name="weak_dirichlet" type="edge">
+        <item patch="5">3</item>
+	<item patch="7">2</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <boundaryconditions>
+   <propertycodes>
+      <code value="1010">
+        <patch index="5" edge="3"/>
+        <patch index="7" edge="2"/>
+      </code>
+    </propertycodes> 
+    <dirichlet comp="1" set="inflow" type="expression">if (below(t,0.1),377.75*t,37.775)</dirichlet>
+    <dirichlet comp="2" set="slipwalls"/>
+    <neumann code="1010">1.0</neumann>
+  </boundaryconditions>
+
+  <stokes>
+    <fluidproperties mu="0.00001820755" rho="1.0"/>
+  </stokes>
+
+  <postprocessing>
+    <resultpoints>
+      <point patch="5" u="1.0" v="0.0"/>
+      <point patch="5" u="0.95" v="0.0"/>
+      <point patch="5" u="0.9" v="0.0"/>
+      <point patch="5" u="0.85" v="0.0"/>
+      <point patch="5" u="0.8" v="0.0"/>
+      <point patch="5" u="0.75" v="0.0"/>
+      <point patch="5" u="0.7" v="0.0"/>
+      <point patch="5" u="0.65" v="0.0"/>
+      <point patch="5" u="0.6" v="0.0"/>
+      <point patch="5" u="0.55" v="0.0"/>
+      <point patch="5" u="0.5" v="0.0"/>
+      <point patch="5" u="0.45" v="0.0"/>
+      <point patch="5" u="0.4" v="0.0"/>
+      <point patch="5" u="0.35" v="0.0"/>
+      <point patch="5" u="0.3" v="0.0"/>
+      <point patch="5" u="0.25" v="0.0"/>
+      <point patch="5" u="0.2" v="0.0"/>
+      <point patch="5" u="0.15" v="0.0"/>
+      <point patch="5" u="0.1" v="0.0"/>
+      <point patch="5" u="0.05" v="0.0"/>
+      <point patch="5" u="0.0" v="0.0"/>
+      <point patch="7" u="1.0" v="0.0"/>
+      <point patch="7" u="1.0" v="0.05"/>
+      <point patch="7" u="1.0" v="0.1"/>
+      <point patch="7" u="1.0" v="0.15"/>
+      <point patch="7" u="1.0" v="0.2"/>
+      <point patch="7" u="1.0" v="0.25"/>
+      <point patch="7" u="1.0" v="0.3"/>
+      <point patch="7" u="1.0" v="0.35"/>
+      <point patch="7" u="1.0" v="0.4"/>
+      <point patch="7" u="1.0" v="0.45"/>
+      <point patch="7" u="1.0" v="0.5"/>
+      <point patch="7" u="1.0" v="0.55"/>
+      <point patch="7" u="1.0" v="0.6"/>
+      <point patch="7" u="1.0" v="0.65"/>
+      <point patch="7" u="1.0" v="0.7"/>
+      <point patch="7" u="1.0" v="0.75"/>
+      <point patch="7" u="1.0" v="0.8"/>
+      <point patch="7" u="1.0" v="0.85"/>
+      <point patch="7" u="1.0" v="0.9"/>
+      <point patch="7" u="1.0" v="0.95"/>
+      <point patch="7" u="1.0" v="1.0"/>
+    </resultpoints>
+  </postprocessing>
+
+  <linearsolver>
+    <type>gmres</type>
+    <pc>lu</pc>
+    <package>petsc</package>
+    <levels>2</levels>
+    <atol>1.0e-4</atol>
+    <rtol>1.0e-4</rtol>
+    <dtol>1.0e6</dtol>
+    <maxits>10000</maxits>
+  </linearsolver>
+
+  <nsnonlinearsolver>
+    <boundaryforce code="1010" file="force.dat" stride="1"/>
+    <pointfile file="point"/>
+
+    <nonlinearsolver>
+      <timestepping>
+	<step start="0" end="0.005"> 0.001</step>
+      </timestepping>
+      <maxits>20</maxits>
+      <rtol>1.0e-6</rtol>
+    </nonlinearsolver>
+  </nsnonlinearsolver>
+
+</simulation>   
