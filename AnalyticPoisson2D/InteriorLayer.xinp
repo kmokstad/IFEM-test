@@ -3,7 +3,7 @@
     <!--General - geometry definitions-->
     <geometry>
         <patchfile type="bsplines">unitSquare.g2</patchfile>
-        <raiseorder lowerpatch="1" u="2" upperpatch="1" v="2"/>
+        <raiseorder lowerpatch="1" u="3" upperpatch="1" v="3"/>
         <refine lowerpatch="1" type="uniform" u="15" upperpatch="1" v="15"/>
         <topologysets>
             <set name="bottom" type="edge">
@@ -37,17 +37,17 @@
     <linearsolver class="superlu"/>
     <!--General - adaptive refinement parameters -->
     <adaptive>
-        <maxstep value="7"/>
+        <maxstep value="13"/>
         <beta value="10"/>
         <maxdof value="13000"/>
         <errtol value="0.000001"/>
         <symmetry value="1"/>
         <knot_mult value="1"/>
         <use_norm value="0"/>
-        <scheme value="isotropic_function"/>
+        <scheme value="minspan"/>
+        <store_eps_mesh/>
+        <test_linear_independence/>
         <!--
-          <store_eps_mesh/>
-          <test_linear_independence/>
         -->
     </adaptive>
     <!--General - postprocessing and result dumping-->
