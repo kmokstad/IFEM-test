@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<simulation>
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile type="bsplines">unitCube.g2</patchfile>
+        <raiseorder lowerpatch="1" upperpatch="1" u="2" v="2" w="2"/>
+        <refine lowerpatch="1" upperpatch="1" type="uniform" u="15" v="15" w="15"/>
+		<!--
+        <raiseorder lowerpatch="1" upperpatch="1" u="1" v="1" w="1"/>
+        <patchfile type="bsplines">sqCube.g2</patchfile>
+        <refine lowerpatch="1" upperpatch="1" type="uniform" u="10" v="10" w="10"/>
+		-->
+        <topologysets>
+            <set name="flat" type="face">
+                <item patch="1">2 4 6</item>
+            </set>
+            <set name="jump" type="face">
+                <item patch="1">1 3 5</item>
+            </set>
+        </topologysets>
+    </geometry>
+
+    <!-- General - numerical integration scheme !-->
+    <discretization>
+        <nGauss>4 9</nGauss>
+    </discretization>
+
+    <!--General - boundary conditions-->
+    <boundaryconditions>
+        <neumann comp="1" set="jump" type="anasol"/>
+        <dirichlet comp="1" set="flat" type="anasol"/>
+    </boundaryconditions>
+    <!--General - linear solver parameters-->
+    <linearsolver class="superlu"/>
+    <!--General - adaptive refinement parameters -->
+    <adaptive>
+        <maxstep value="3"/>
+		<beta value="4"/>
+        <maxdof value="25000"/>
+        <errtol value="0.000001"/>
+        <knot_mult value="1"/>
+		<scheme value="isotropic_function"/>
+        <!--
+        <store_eps_mesh/>
+        <test_linear_independence/>
+        <use_norm value="0"/>
+        <scheme value="isotropic_function"/>
+        <symmetry value="1"/>
+        -->
+    </adaptive>
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <!--
+		<vtfformat nu="2" nv="2" nw="2">BINARY</vtfformat>
+		<hdf5>myH5.h5</hdf5>
+		<dump_lhs_matrix format="M">dumpA.m</dump_lhs_matrix>
+		<dump_rhs_vector format="M">dumpb.m</dump_rhs_vector>
+		-->
+    </postprocessing>
+    <!--App specific block-->
+    <poisson>
+        <isotropic code="0" kappa="1"/>
+        <anasol type="waterfall" epsilon="0.005"/>
+        <source type="waterfall" epsilon="0.005"/>
+    </poisson>
+</simulation>
