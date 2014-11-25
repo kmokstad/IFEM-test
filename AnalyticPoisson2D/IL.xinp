@@ -2,10 +2,9 @@
 <simulation>
     <!--General - geometry definitions-->
     <geometry>
-        <patchfile type="bsplines">unitSquare.g2</patchfile>
-        <raiseorder lowerpatch="1" u="RAISEORDER1" upperpatch="1" v="RAISEORDER1"/>
-        <refine lowerpatch="1" type="uniform" u="3" upperpatch="1" v="3"/>
-        <raiseorder lowerpatch="1" u="RAISEORDER2" upperpatch="1" v="RAISEORDER2"/>
+        <raiseorder patch="1" u="RAISEORDER1" v="RAISEORDER1"/>
+        <refine patch="1" type="uniform" u="3" v="3"/>
+        <raiseorder patch="1" u="RAISEORDER2" v="RAISEORDER2"/>
         <topologysets>
             <set name="bottom" type="edge">
                 <item patch="1">3</item>

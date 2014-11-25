@@ -2,14 +2,8 @@
 <simulation>
     <!--General - geometry definitions-->
     <geometry>
-        <patchfile type="bsplines">unitCube.g2</patchfile>
-        <raiseorder lowerpatch="1" upperpatch="1" u="2" v="2" w="2"/>
-        <refine lowerpatch="1" upperpatch="1" type="uniform" u="15" v="15" w="15"/>
-		<!--
-        <raiseorder lowerpatch="1" upperpatch="1" u="1" v="1" w="1"/>
-        <patchfile type="bsplines">sqCube.g2</patchfile>
-        <refine lowerpatch="1" upperpatch="1" type="uniform" u="10" v="10" w="10"/>
-		-->
+        <raiseorder patch="1" u="2" v="2" w="2"/>
+        <refine patch="1" type="uniform" u="15" v="15" w="15"/>
         <topologysets>
             <set name="flat" type="face">
                 <item patch="1">2 4 6</item>
