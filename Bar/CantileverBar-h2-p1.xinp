@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Basic 1D elastic bar test. Cantilever with tip axial load. !-->
+
+<simulation>
+
+  <geometry L="10.0">
+    <raiseorder patch="1" u="0"/>
+    <refine patch="1" u="9"/>
+    <topologysets>
+      <set name="all" type="curve">
+        <item patch="1"/>
+      </set>
+      <set name="fixed" type="vertex">
+        <item patch="1">1</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <boundaryconditions>
+    <dirichlet set="all" comp="23"/>
+    <dirichlet set="fixed" comp="1"/>
+  </boundaryconditions>
+
+  <bar type="Logarithmic">
+    <material EA="5.0e9" rho="7.85e3"/>
+    <nodeload u="1.0" dof="1" type="expression">5.0e8*sin(50.0*t)</nodeload>
+  </bar>
+
+  <discretization>
+    <nGauss>2</nGauss>
+  </discretization>
+
+  <linearsolver class="dense"/>
+
+  <newmarksolver alpha="-0.1">
+    <referencenorm>all</referencenorm>
+    <convnorm>energy</convnorm>
+    <rtol>1.0e-16</rtol>
+    <timestepping>
+      <step start="0.0" end="1.0">0.002</step>
+    </timestepping>
+  </newmarksolver>
+
+  <postprocessing>
+    <resultpoints>
+      <point patch="1" u="0.0"/>
+      <point patch="1" u="1.0"/>
+    </resultpoints>
+  </postprocessing>
+
+</simulation>
