@@ -1,0 +1,3 @@
+Test cases put here are used to verify the numerical correctness of features in
+IFEM, against analytical reference solutions or from other simulation programs,
+and that not are used as general regression tests.

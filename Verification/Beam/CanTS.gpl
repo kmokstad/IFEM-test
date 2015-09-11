@@ -1,0 +1,34 @@
+set title "Cantilever beam with tip shear load"
+E = 1000.0
+nu = 0.3
+G = E/(2.0+nu+nu)
+L = 10.0
+h = 1.0
+A = 1.0
+I = A*h*h/12.0
+kappa = 1.2
+P = 1.0
+U_wiki(x) = (3.0*L-x)*x*x * P/(6.0*E*I) + kappa*P*x/(G*A)
+U_tah(x) = ((3.0*L-x)*x*x + (1.0+1.25*nu)*kappa*h*h*x) * P/(6.0*E*I)
+set xrange [0:10]
+set xlabel "x [m]"
+set ylabel "Uz [m]"
+set key bottom
+plot U_tah(x), U_wiki(x)
+pause 3 "Wait for difference..."
+plot 100.0*(U_tah(x)-U_wiki(x))/U_wiki(L)
+pause 3 "Wait for convergence plots..."
+
+set key top
+set xlabel "Number of degrees of freedom"
+set ylabel "L2-norm error in displacement [m]"
+set logscale xy
+set xrange [10:4000]
+plot \
+'CanTS-L1.dat' using 1:3 with linespoints title "p=1",\
+'CanTS-L2.dat' using 1:3 with linespoints title "Lagrange p=2",\
+'CanTS-S2.dat' using 1:3 with linespoints title "Splines p=2"
+pause 3 "Wait for png-output..."
+set term png
+set output "CanTS.png"
+replot

@@ -1,0 +1,31 @@
+set title "Double cantilever beam with transverse load"
+E = 1000.0
+nu = 0.3
+G = E/(2.0+nu+nu)
+L = 10.0
+h = 1.0
+A = 1.0
+I = A*h*h/12.0
+kappa = 1.2
+P = 1.0
+U(x) = (1.5*L-x)*x*x * P/(6.0*E*I) + kappa*P*x/(G*A)
+set xrange [0:10]
+set xlabel "x [m]"
+set ylabel "Uz [m]"
+set key bottom
+plot U(x)
+pause 3 "Wait for convergence plots..."
+
+set key top
+set xlabel "Number of degrees of freedom"
+set ylabel "L2-norm error in displacement [m]"
+set logscale xy
+set xrange [10:4000]
+plot \
+'DblCanP-L1.dat' using 1:3 with linespoints title "p=1",\
+'DblCanP-L2.dat' using 1:3 with linespoints title "Lagrange p=2",\
+'DblCanP-S2.dat' using 1:3 with linespoints title "Splines p=2"
+pause 3 "Wait for png-output..."
+set term png
+set output "DblCanP.png"
+replot

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+  <geometry L="10.0">
+    <refine patch="1" u="X"/>
+    <topologysets>
+      <set name="innspenning" type="vertex">
+        <item patch="1">1</item>
+      </set>
+    </topologysets>
+  </geometry>
+  <discretization type="lagrange">
+    <nGauss>2</nGauss>
+  </discretization>
+  <include>CanTS.xinp</include>
+  <linearsolver class="dense"/>
+</simulation>

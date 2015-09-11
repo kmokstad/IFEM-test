@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+  <geometry L="10.0">
+    <raiseorder patch="1" u="2"/>
+    <refine patch="1" u="X"/>
+    <topologysets>
+      <set name="innspenning" type="vertex">
+        <item patch="1">1</item>
+      </set>
+      <set name="midtpunkt" type="vertex">
+        <item patch="1">2</item>
+      </set>
+    </topologysets>
+  </geometry>
+  <discretization>
+    <nGauss>4</nGauss>
+  </discretization>
+  <include>DblCanq.xinp</include>
+  <linearsolver class="dense"/>
+</simulation>

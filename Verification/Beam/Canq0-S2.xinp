@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+  <geometry L="10.0">
+    <raiseorder patch="1" u="1"/>
+    <refine patch="1" u="X"/>
+    <topologysets>
+      <set name="innspenning" type="vertex">
+        <item patch="1">1</item>
+      </set>
+    </topologysets>
+  </geometry>
+  <discretization>
+    <nGauss>3</nGauss>
+  </discretization>
+  <include>Canq0.xinp</include>
+  <linearsolver class="dense"/>
+</simulation>
