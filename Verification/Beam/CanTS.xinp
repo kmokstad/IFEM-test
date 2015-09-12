@@ -16,10 +16,6 @@
   </primary>
 </anasol>
 
-<nonlinearsolver rotation="total">
-  <convnorm>none</convnorm>
-</nonlinearsolver>
-
 <postprocessing>
   <resultpoints>
     <point patch="1" u="1.0"/>
