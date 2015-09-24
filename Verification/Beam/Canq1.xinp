@@ -1,0 +1,24 @@
+<!-- Basic 1D elastic beam test.
+     Cantilever beam with a linear distributed load. !-->
+
+<boundaryconditions>
+  <dirichlet set="innspenning" comp="123456"/>
+</boundaryconditions>
+
+<beam type="Timoshenko">
+  <material E="1000.0" nu="0.3"/>
+  <properties B="1" H="1" Ky="1.2" Kz="1.2"/>
+  <lineload type="expression">0.0 | 0.0 | q0=0.02; q0*x</lineload>
+</beam>
+
+<anasol type="expression">
+  <primary> 0 | 0 | q0=0.02; L=10; h=1; EI=1000/12; nu=0.3; kappa=1.2;
+    ((2*L*L*L-x*L*L+x*x*x/10)*x*x + (1+nu)*kappa*h*h*(L*L-x*x/3)*x) * q0/(12*EI)
+  </primary>
+</anasol>
+
+<postprocessing>
+  <resultpoints>
+    <point patch="1" u="1.0"/>
+  </resultpoints>
+</postprocessing>
