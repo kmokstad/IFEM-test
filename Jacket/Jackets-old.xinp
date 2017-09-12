@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<simulation>
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile type="bsplines">Jackets.g2</patchfile>
+        <nodefile>Jackets.gno</nodefile>
+        <topologysets/>
+    </geometry>
+    <!-- Odin setup parameters (only parsed by the GUI) -->
+    <odin>
+        <geometry>
+            <refine>
+                <k-ref>true</k-ref>
+            </refine>
+            <topology>
+                <tolerance>1e-2</tolerance>
+            </topology>
+            <preset>Jackets</preset>
+        </geometry>
+        <commandline>
+            <nGauss>3</nGauss>
+        </commandline>
+    </odin>
+    <!--General - boundary conditions-->
+    <boundaryconditions/>
+    <!--General - linear solver parameters-->
+    <linearsolver class="superlu"/>
+    <!--General - eigenvalue analysis-->
+    <eigensolver>
+        <mode>4</mode>
+        <shift>0</shift>
+        <ncv>32</ncv>
+        <nev>16</nev>
+    </eigensolver>
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <vtfformat nu="4" nv="4" nw="4">BINARY</vtfformat>
+        <hdf5>Jacket.hdf5</hdf5>
+    </postprocessing>
+    <!--App specific block-->
+    <elasticity>
+        <isotropic E="2.0E8" code="0" nu="0.28" rho="7850.0"/>
+    </elasticity>
+</simulation>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<simulation>
+
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile>coarseFull.g2</patchfile>
+        <nodefile>coarseFull.gno</nodefile>
+        <topologysets>
+           <set name="bottom" type="face">
+             <item patch="1">2</item>
+             <item patch="2">2</item>
+             <item patch="141">4</item>
+             <item patch="142">4</item>
+             <item patch="281">4</item>
+             <item patch="282">4</item>
+             <item patch="421">2</item>
+             <item patch="422">2</item>
+             <item patch="561">4</item>
+             <item patch="562">4</item>
+             <item patch="701">2</item>
+             <item patch="702">2</item>
+             <item patch="841">2</item>
+             <item patch="842">2</item>
+             <item patch="981">4</item>
+             <item patch="982">4</item>
+           </set>
+        </topologysets>
+    </geometry>
+
+    <!--General - boundary conditions-->
+    <boundaryconditions>
+      <dirichlet set="bottom" comp="123"/>
+    </boundaryconditions>
+
+    <!--General - linear solver parameters-->
+    <linearsolver class="superlu"/>
+
+    <!--General - eigenvalue analysis
+    <eigensolver>
+        <mode>4</mode>
+        <shift>0</shift>
+        <ncv>32</ncv>
+        <nev>16</nev>
+    </eigensolver>
+ -->
+    <discretization>
+        <nGauss>3</nGauss>
+    </discretization>
+
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <vtfformat nu="3" nv="3">BINARY</vtfformat>
+        <hdf5>Jacket.hdf5</hdf5>
+    </postprocessing>
+
+    <!--App specific block-->
+    <elasticity>
+        <gravity x="9.81"/>
+        <isotropic E="2.1e11" code="0" nu="0.29" rho="7850.0"/>
+    </elasticity>
+
+</simulation>

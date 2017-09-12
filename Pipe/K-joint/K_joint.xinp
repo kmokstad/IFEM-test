@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Isogeometric K-joint. !-->
+
+<simulation>
+
+  <geometry>
+    <patchfile>K_joint_out.g2</patchfile>
+    <nodefile>K_joint_out.gno</nodefile>
+    <topologysets>
+      <set name="chord1" type="face">
+        <item patch="1">1</item>
+        <item patch="8">3</item>
+        <item patch="10">3</item>
+        <item patch="27">3</item>
+        <item patch="28">3</item>
+      </set>
+      <set name="chord1" type="face">
+        <item patch="2">2</item>
+        <item patch="11">3</item>
+        <item patch="13">3</item>
+        <item patch="31">3</item>
+        <item patch="32">3</item>
+      </set>
+      <set name="brace1" type="face">
+        <item patch="21">3</item>
+        <item patch="22">3</item>
+        <item patch="23">3</item>
+        <item patch="24">3</item>
+        <item patch="38">3</item>
+        <item patch="39">1</item>
+      </set>
+      <set name="brace2" type="face">
+        <item patch="17">5</item>
+        <item patch="18">3</item>
+        <item patch="19">3</item>
+        <item patch="20">3</item>
+        <item patch="33">3</item>
+        <item patch="34">3</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <boundaryconditions>
+    <dirichlet set="chord1" comp="123"/>
+    <dirichlet set="chord2" comp="123"/>
+    <neumann set="brace1" direction="0">1000.0</neumann>
+    <neumann set="brace2" direction="0">-500.0</neumann>
+  </boundaryconditions>
+
+  <elasticity>
+    <isotropic E="2.1e5" nu="0.3" rho="7.85e-6"/>
+  </elasticity>
+
+</simulation>

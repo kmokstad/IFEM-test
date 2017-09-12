@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<simulation>
+
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile>fineFull.g2</patchfile>
+        <nodefile>fineFull.gno</nodefile>
+        <topologysets/>
+    </geometry>
+
+    <!--General - boundary conditions-->
+    <boundaryconditions/>
+
+    <!--General - linear solver parameters-->
+    <linearsolver class="superlu"/>
+
+    <!--General - eigenvalue analysis-->
+    <eigensolver>
+        <mode>4</mode>
+        <shift>0</shift>
+        <ncv>32</ncv>
+        <nev>16</nev>
+    </eigensolver>
+
+    <discretization>
+        <nGauss>3</nGauss>
+    </discretization>
+
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <vtfformat>BINARY</vtfformat>
+        <hdf5>Jacket.hdf5</hdf5>
+    </postprocessing>
+
+    <!--App specific block-->
+    <elasticity>
+        <gravity z="-9.81"/>
+        <isotropic E="2.1e11" code="0" nu="0.29" rho="7850.0"/>
+    </elasticity>
+
+</simulation>

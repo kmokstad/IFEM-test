@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Isogeometric K-joint. !-->
+
+<simulation>
+
+  <geometry>
+    <patchfile>K-joint.g2</patchfile>
+    <topology>
+
+      <connection master="1"  mface="1" slave="2"  sface="2"/>
+      <connection master="1"  mface="2" slave="2"  sface="1"/>
+      <connection master="9"  mface="1" slave="10" sface="2"/>
+      <connection master="9"  mface="2" slave="10" sface="1"/>
+
+      <connection master="1"  mface="4" slave="3"  sface="4" orient="1"/>
+      <connection master="3"  mface="3" slave="11" sface="3" orient="1"/>
+      <connection master="9"  mface="4" slave="11" sface="4" orient="1"/>
+      <connection master="3"  mface="1" slave="4"  sface="1" orient="1"/>
+      <connection master="3"  mface="2" slave="4"  sface="2" orient="1"/>
+      <connection master="11" mface="1" slave="12" sface="1" orient="1"/>
+      <connection master="11" mface="2" slave="12" sface="2" orient="1"/>
+      <connection master="4"  mface="3" slave="12" sface="3" orient="1"/>
+
+      <connection master="5"  mface="1" slave="6"  sface="2"/>
+      <connection master="5"  mface="2" slave="6"  sface="1"/>
+      <connection master="5"  mface="3" slave="2"  sface="4"/>
+      <connection master="5"  mface="6" slave="7"  sface="4"/>
+      <connection master="6"  mface="3" slave="4"  sface="4"/>
+      <connection master="6"  mface="6" slave="8"  sface="4"/>
+
+      <connection master="13" mface="1" slave="14" sface="2"/>
+      <connection master="13" mface="2" slave="14" sface="1"/>
+      <connection master="13" mface="3" slave="10" sface="4"/>
+      <connection master="13" mface="5" slave="15" sface="4" orient="1"/>
+      <connection master="14" mface="3" slave="12" sface="4"/>
+      <connection master="14" mface="5" slave="16" sface="4" orient="1"/>
+
+      <connection master="7"  mface="1" slave="8"  sface="2"/>
+      <connection master="7"  mface="1" slave="8"  sface="2"/>
+      <connection master="15" mface="1" slave="16" sface="2"/>
+      <connection master="16" mface="1" slave="15" sface="2"/>
+
+    </topology>
+
+    <topologysets>
+      <set name="YZ-plan" type="face">
+        <item patch="1">3</item>
+        <item patch="2">3</item>
+        <item patch="9">3</item>
+        <item patch="10">3</item>
+      </set>
+      <set name="brace-ends" type="face">
+        <item patch="7">3</item>
+        <item patch="8">3</item>
+        <item patch="15">3</item>
+        <item patch="16">3</item>
+      </set>
+    </topologysets>
+
+  </geometry>
+
+  <boundaryconditions>
+    <dirichlet comp="1" set="YZ-plan"/>
+    <dirichlet comp="1" set="brace-ends" axes="local"/>
+  </boundaryconditions>
+
+</simulation>

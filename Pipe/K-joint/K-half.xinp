@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Isogeometric K-joint, half model with symmetry conditions !-->
+
+<simulation>
+
+  <geometry>
+    <patchfile>K_unif.g2</patchfile>
+    <topology>
+      <connection master="4" mface="6" slave="6" sface="5"/>
+      <connection master="3" mface="5" slave="5" sface="6"/>
+      <connection master="2" mface="4" slave="9" sface="5" orient="1"/>
+      <connection master="2" mface="3" slave="8" sface="6" orient="1"/>
+      <connection master="2" mface="1" slave="4" sface="4" orient="1"/>
+      <connection master="1" mface="4" slave="9" sface="6"/>
+      <connection master="1" mface="3" slave="7" sface="5"/>
+      <connection master="1" mface="1" slave="3" sface="4" orient="1"/>
+    </topology>
+
+    <topologysets>
+      <set name="XZ-plan" type="face">
+        <item patch="1">2</item>
+        <item patch="2">2</item>
+        <item patch="3">1 2</item>
+        <item patch="4">1 2</item>
+        <item patch="5">1 2</item>
+        <item patch="6">1 2</item>
+        <item patch="7">1 2</item>
+        <item patch="8">1 2</item>
+        <item patch="9">1 2</item>
+      </set>
+      <set name="YZ-plan" type="face">
+        <item patch="7">6</item>
+        <item patch="8">5</item>
+      </set>
+      <set name="brace-ends" type="face">
+        <item patch="5">5</item>
+        <item patch="6">6</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <boundaryconditions>
+    <dirichlet comp="1" set="YZ-plan"/>
+    <dirichlet comp="2" set="XZ-plan"/>
+    <dirichlet comp="1" set="brace-ends" axes="local"/>
+  </boundaryconditions>
+
+</simulation>

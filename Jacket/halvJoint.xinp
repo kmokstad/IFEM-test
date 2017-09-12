@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<simulation>
+
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile>jacket_p2.g2</patchfile>
+        <nodefile>jacket_p2.gno</nodefile>
+        <topologysets>
+           <set name="bottom" type="face">
+             <item patch="1">2</item>
+             <item patch="2">2</item>
+             <item patch="25">4</item>
+             <item patch="26">4</item>
+          </set>
+        </topologysets>
+    </geometry>
+
+    <!--General - boundary conditions-->
+    <boundaryconditions>
+      <dirichlet set="bottom" comp="123"/>
+    </boundaryconditions>
+
+    <discretization>
+        <nGauss>3</nGauss>
+    </discretization>
+
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <vtfformat>BINARY</vtfformat>
+    </postprocessing>
+
+    <!--App specific block-->
+    <elasticity>
+        <gravity x="9.81"/>
+        <isotropic E="2.1e11" nu="0.29" rho="7850.0"/>
+    </elasticity>
+
+</simulation>

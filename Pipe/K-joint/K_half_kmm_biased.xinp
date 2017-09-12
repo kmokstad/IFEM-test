@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Isogeometric K-joint, half model with symmetry conditions !-->
+
+<simulation>
+
+  <geometry>
+    <patchfile>K_half_kmm_biased_q3.g2</patchfile>
+    <topology>
+      <connection master="4" mface="6" slave="6" sface="5"/>
+      <connection master="3" mface="5" slave="5" sface="6"/>
+      <connection master="2" mface="4" slave="9" sface="5" orient="1"/>
+      <connection master="2" mface="3" slave="8" sface="6" orient="1"/>
+      <connection master="2" mface="1" slave="4" sface="4" orient="1"/>
+      <connection master="1" mface="4" slave="9" sface="6"/>
+      <connection master="1" mface="3" slave="7" sface="5"/>
+      <connection master="1" mface="1" slave="3" sface="4" orient="1"/>
+    </topology>
+
+    <topologysets>
+      <set name="XZ-plan" type="face">
+        <item patch="1">2</item>
+        <item patch="2">2</item>
+        <item patch="3">1 2</item>
+        <item patch="4">1 2</item>
+        <item patch="5">1 2</item>
+        <item patch="6">1 2</item>
+        <item patch="7">1 2</item>
+        <item patch="8">1 2</item>
+        <item patch="9">1 2</item>
+      </set>
+      <set name="YZ-plan" type="face">
+        <item patch="7">6</item>
+        <item patch="8">5</item>
+      </set>
+      <set name="brace-end-lower" type="face">
+        <item patch="5">5</item>
+      </set>
+      <set name="brace-end-upper" type="face">
+        <item patch="6">6</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <boundaryconditions>
+    <dirichlet comp="1" set="YZ-plan"/>
+    <dirichlet comp="2" set="XZ-plan"/>
+    <dirichlet comp="3" set="brace-end-upper" axes="local"/>
+    <dirichlet comp="3" type="linear" set="brace-end-lower" axes="local">-10.0</dirichlet>
+  </boundaryconditions>
+
+  <finitedeformation>
+    <formulation>
+      <updatedlagrange/>
+    </formulation>
+    <plastic E="2.08e5" nu="0.3" yield="4" Y0="465.5" Yinf="410.83" beta="0.4793" istrt="3"/>
+  </finitedeformation>
+
+  <discretization>
+    <nGauss>4</nGauss>
+  </discretization>
+
+  <nonlinearsolver>
+    <timestepping dtMin="0.1" dtMax="0.5">
+      <step start="0.0" end="1.6">0.4</step>
+    </timestepping>
+    <rtol value="1.0e-8"/>
+    <dtol value="1.0e12"/>
+  </nonlinearsolver>
+
+  <postprocessing>
+    <vtfformat>BINARY</vtfformat>
+    <stride dt="0.1"/> 
+<!--
+    <resultpoints>
+      <point patch="1" u="0.0" v="0.0" w="0.0"/>
+      <point patch="6" u="1.0" v="0.0" w="0.0"/>
+    </resultpoints>
+!-->
+    <projection>
+      <cgl2/>
+    </projection>
+  </postprocessing>
+
+</simulation>

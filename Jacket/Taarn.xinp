@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<simulation>
+
+    <!--General - geometry definitions-->
+    <geometry>
+        <patchfile>tower.g2</patchfile>
+        <nodefile>tower.gno</nodefile>
+        <topologysets>
+           <set name="bottom" type="face">
+             <item patch="1">2</item>
+             <item patch="2">2</item>
+             <item patch="141">4</item>
+             <item patch="142">4</item>
+             <item patch="701">2</item>
+             <item patch="702">2</item>
+             <item patch="561">4</item>
+             <item patch="562">4</item>
+             <item patch="841">2</item>
+             <item patch="842">2</item>
+             <item patch="981">4</item>
+             <item patch="982">4</item>
+             <item patch="421">2</item>
+             <item patch="422">2</item>
+             <item patch="281">4</item>
+             <item patch="282">4</item>
+             <item patch="302">3</item>
+             <item patch="303">3</item>
+             <item patch="862">1</item>
+             <item patch="863">1</item>
+             <item patch="722">1</item>
+             <item patch="723">1</item>
+             <item patch="1002">3</item>
+             <item patch="1003">3</item>
+             <item patch="442">1</item>
+             <item patch="443">1</item>
+             <item patch="162">3</item>
+             <item patch="163">3</item>
+             <item patch="582">3</item>
+             <item patch="583">3</item>
+             <item patch="22">1</item>
+             <item patch="23">1</item>
+          </set>
+        </topologysets>
+    </geometry>
+
+    <!--General - boundary conditions-->
+    <boundaryconditions>
+      <dirichlet set="bottom" comp="123"/>
+    </boundaryconditions>
+
+    <!--General - eigenvalue analysis-->
+    <eigensolver>
+        <mode>4</mode>
+        <shift>0</shift>
+        <ncv>32</ncv>
+        <nev>16</nev>
+    </eigensolver>
+
+    <discretization>
+        <nGauss>3</nGauss>
+    </discretization>
+
+    <!--General - postprocessing and result dumping-->
+    <postprocessing>
+        <vtfformat nu="5" nv="5">BINARY</vtfformat>
+    </postprocessing>
+
+    <!--App specific block-->
+    <elasticity>
+        <gravity z="9.81"/>
+        <isotropic E="2.1e11" nu="0.29" rho="7850.0"/>
+    </elasticity>
+
+</simulation>
