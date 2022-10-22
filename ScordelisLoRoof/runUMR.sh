@@ -1,6 +1,7 @@
 #!/bin/sh
 name=$1-p$2
-if [ $# -lt 3 ]; then exec echo "usage: $0 name order steps"; fi
+steps=$3
+if [ $# -lt 3 ]; then exec echo "usage: $0 name order steps [options]"; fi
 if [ ! -e $name.xinp ]; then exec echo "$0: File $name.xinp does not exist"; fi
 if [ ! -d run ]; then mkdir run; fi
 shift; shift; shift
@@ -15,14 +16,14 @@ cp $dir/getres.awk .tmp.awk
 #
 u0=`awk -F'"' '/<refine/{print$4}' $name.xinp | tail -1`
 h=0; u=$u0
-LinEl -2DKLshell -outPrec 15 $name.xinp |\
+LinEl -2DKLshell -outPrec 15 $* $name.xinp |\
 tee run/$name-h0.log | awk -f .tmp.awk | tee -a $name-UMR.dat
-while [ $h -lt $3 ]; do
+while [ $h -lt $steps ]; do
   h=$((h+1))
   u=$((u*2+1))
   case=$name-h$h
   refine="/<refine/s/u=\".*\"/u=\"$u\" v=\"$u\"/"
   sed "$refine" $name.xinp > run/$case.xinp
-  LinEl -2DKLshell -outPrec 15 run/$case.xinp |\
+  LinEl -2DKLshell -outPrec 15 $* run/$case.xinp |\
   tee run/$case.log | awk -f .tmp.awk | tee -a $name-UMR.dat
 done
