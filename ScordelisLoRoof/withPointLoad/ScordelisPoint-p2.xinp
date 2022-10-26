@@ -8,7 +8,7 @@
   <!-- General - geometry definitions !-->
   <geometry>
     <patchfile>../scordelis-lo-s2.g2</patchfile>
-    <refine patch="1" u="0" v="0"/>
+    <refine patch="1" u="3" v="3"/>
     <topologysets>
       <set name="ends" type="edge">
         <item patch="1">1 2</item>
@@ -55,7 +55,7 @@
     <beta>5</beta>
     <errtol>0.0001</errtol>
     <maxdof>100000</maxdof>
-    <maxstep>15</maxstep>
+    <maxstep>20</maxstep>
   </adaptive>
 
 </simulation>

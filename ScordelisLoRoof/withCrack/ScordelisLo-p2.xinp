@@ -7,7 +7,7 @@
 
   <!-- General - geometry definitions !-->
   <geometry>
-    <patchfile>scordelis-lo-s2-4x4.lr</patchfile>
+    <patchfile>scordelis-lo-s2-8x8.lr</patchfile>
     <topologysets>
       <set name="ends" type="edge">
         <item patch="1">1 2</item>
@@ -52,7 +52,7 @@
     <beta>5</beta>
     <errtol>0.0001</errtol>
     <maxdof>100000</maxdof>
-    <maxstep>15</maxstep>
+    <maxstep>20</maxstep>
   </adaptive>
 
 </simulation>

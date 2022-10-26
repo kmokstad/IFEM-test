@@ -11,11 +11,11 @@ echo "\nRunning Adaptive $case ..."
 done
 
 echo "\nRunning Uniform spline cases ..."
-../runUMR.sh ScordelisPoint 2 7
+../runUMR.sh ScordelisPoint 2 6
 ../runUMR.sh ScordelisPoint 3 6
 ../runUMR.sh ScordelisPoint-r1 3 6
 
 echo "\nRunning Uniform NURBS cases ..."
-../runUMR.sh ScordelisPoint-NURBS 2 7
+../runUMR.sh ScordelisPoint-NURBS 2 6
 ../runUMR.sh ScordelisPoint-NURBS 3 6
 ../runUMR.sh ScordelisPoint-NURBSr1 3 6

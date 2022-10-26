@@ -8,7 +8,8 @@ if [ ! -e $name.xinp ]; then exec echo "$0: File $name.xinp does not exist"; fi
 if [ ! -d run ]; then mkdir run; fi
 shift; shift; shift
 echo "#    NEL    NNOD   NDOFS Internal_energy External_energy Estimated_error(%)" | tee $name-UMR.dat
-h=0; u=4
+h=0;
+if [ $p = 2 ]; then u=8; else u=4; fi
 LinEl -2DKLshell -outPrec 15 -LR $* $name.xinp |\
 tee run/$name-h0.log | awk -f ../getres.awk | tee -a $name-UMR.dat
 cd run
