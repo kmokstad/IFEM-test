@@ -41,3 +41,15 @@ pause 1 "Wait.."
 set term pdfcairo
 set output 'ScordelisLo-3.pdf'
 replot
+
+set term qt
+plot '12.dat' with lines dt '-' title '-1/2', '22.dat' with lines dt '-' title '-2/2', \
+'ScordelisLo-p2-UMR.dat' using 3:6 with linespoints title 'UMR p=2 r=1', \
+'ScordelisLo-p2-AMR.dat' using 3:6 with linespoints title 'AMR p=2 r=1', \
+'ScordelisLo-p3-UMR.dat' using 3:6 with linespoints title 'UMR p=3 r=2', \
+'ScordelisLo-p3-AMR.dat' using 3:6 with linespoints title 'AMR p=3 r=2', \
+'ScordelisLo-p4-AMR.dat' using 3:6 with linespoints title 'AMR p=4 r=3'
+pause 1 "Wait.."
+set term pdfcairo
+set output 'ScordelisLo-4.pdf'
+replot

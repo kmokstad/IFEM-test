@@ -26,14 +26,13 @@ def make_quadratics():
         output.write(surf)
 
     # Create a spline surface with 2x2 quadratic elements (21 Feb 2019)
-    surf = surf.rebuild(p=(3,3),n=(4,4)).reparam()
+    surf = surf.rebuild(p=(3,3),n=(4,4))
     with G2('scordelis-lo-s2.g2') as output:
         output.write(surf)
 
 def make_cubics():
     # Create a spline surface with 6x6 cubic elements (11 Dec 2018)
     surf = ScordelisLo(25,50).rebuild(p=(4,4),n=(9,9))
-    #surf.reparam()
     with G2('scordelis-lo-s3.g2') as output:
         output.write(surf)
 
@@ -65,7 +64,25 @@ def make_cubics():
     with G2('scordelis-lo-N3r1.g2') as output:
         output.write(surf)
 
+def make_quartics():
+    # Create a spline surface with 4x4 quartic elements (2 Nov 2022)
+    surf = ScordelisLo(25,50).rebuild(p=(5,5),n=(8,8))
+    with G2('scordelis-lo-s4.g2') as output:
+        output.write(surf)
+
+    # Create a spline surface (4x4 quartic elements)
+    # with reduced continuity along the orthogonal center lines (2 Nov 2022)
+    surf = ScordelisLo(25,50).rebuild(p=(4,4),n=(7,7))
+    surf.reparam()
+    surf.insert_knot(0.5,0)
+    surf.insert_knot(0.5,1)
+    surf.raise_order(1)
+
+    with G2('scordelis-lo-s4r1.g2') as output:
+        output.write(surf)
+
 
 if __name__ == "__main__":
     make_quadratics()
     make_cubics()
+    make_quartics()

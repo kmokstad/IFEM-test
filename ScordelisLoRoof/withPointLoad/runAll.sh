@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for case in ScordelisPoint-p2 ScordelisPoint-p3 ScordelisPoint-r1-p3; do
+for case in ScordelisPoint-p2 ScordelisPoint-p3 ScordelisPoint-r1-p3 ScordelisPoint-p4 ScordelisPoint-r1-p4; do
 echo "\nRunning Adaptive $case ..."
 ../runAMR.sh $case.xinp
 done
