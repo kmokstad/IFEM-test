@@ -1,0 +1,10 @@
+<!-- Common adaptive refinement scheme !-->
+
+<adaptive>
+  <scheme>isotropic_function</scheme>
+  <beta>5</beta>
+  <errtol>0.0001</errtol>
+  <maxdof>100000</maxdof>
+  <maxstep>20</maxstep>
+  <maxcondition>1.0e16</maxcondition>
+</adaptive>
