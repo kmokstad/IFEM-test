@@ -26,7 +26,7 @@ int main (int argc, char** argv)
   if (argc < 2)
   {
     std::cout <<"usage: "<< argv[0]
-              <<" <g2-file> [<lr-file>] [-u <u> <v0> <v1>|-v <v> <u0> <u1>]\n";
+              <<" <g2-file> [<lr-file>] [-u <u> <v0> <v1>|-v <v> <u0> <u1>][-c <cont>]\n";
     return 0;
   }
 
@@ -50,7 +50,14 @@ int main (int argc, char** argv)
     return 1;
   }
 
-  int dir = 0, p = 0;
+  int dir = 0, p = 0, C = -1;
+  if (argc > 7 && !strcmp(argv[argc-2],"-c"))
+  {
+    // Get continuity to insert (default -1)
+    C = atoi(argv[argc-1]);
+    argc -= 2;
+  }
+
   if (argc > 5)
     if (!strcmp(argv[argc-4],"-u"))
     {
@@ -62,6 +69,14 @@ int main (int argc, char** argv)
       dir = 2; // make C^-1 line in v-direction
       p = srf.order_u();
     }
+    else if (!strcmp(argv[argc-4],"-uv"))
+    {
+      dir = 3; // make C^-1 line in both directions
+      p = std::max(srf.order_u(),srf.order_v());
+    }
+
+  int multiplicity = p-C; // multiplicity p+1 <=> C^{-1} line
+  if (multiplicity < 1) return 2;
 
   double u[3];
   if (dir > 0)
@@ -69,20 +84,20 @@ int main (int argc, char** argv)
     for (int i = 2; i >= 0; i--)
       u[i] = atof(argv[--argc]);
     --argc;
-    std::cout <<"   * Inserting C^-1 line in "<< char('t'+dir) <<"-direction:";
+    std::cout <<"   * Inserting C^"<< C <<" line in "<< char('t'+dir) <<"-direction:";
     for (int i = 0; i < 3; i++) std::cout <<" "<< u[i];
     std::cout << std::endl;
   }
 
   LR::LRSplineSurface lr(&srf);
-  if (dir == 2) // v-direction
+  if (dir == 2 || dir == 3) // v-direction
     lr.insert_const_u_edge(u[0],       // u = u0 = constant
                            u[1], u[2], // v \in [u1, u2]
-                           p+1);       // multiplicity p+1 <=> C^{-1} line
-  else if (dir > 0) // u-direction
+                           multiplicity);
+  if (dir == 1 || dir == 3) // u-direction
     lr.insert_const_v_edge(u[0],       // v = u0 = constant
                            u[1], u[2], // v \in [u1, u2]
-                           p+1);       // multiplicity p+1 <=> C^{-1} line
+                           multiplicity);
 
   char* lrfile = strcat(strtok(strdup(argc > 2 ? argv[2] : argv[1]),"."),".lr");
   std::cout <<"   * Writing LR-mesh to "<< lrfile << std::endl;
