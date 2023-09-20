@@ -1,0 +1,22 @@
+<geometry>
+  <topologysets>
+    <set name="boundary" type="edge">
+      <item patch="1">1 2 3 4</item>
+    </set>
+  </topologysets>
+</geometry>
+
+<boundaryconditions>
+  <dirichlet set="boundary" comp="1"/>
+</boundaryconditions>
+
+<kirchhofflove>
+  <isotropic E="1.0" nu="0.3" thickness="1.0"/>
+  <pointload patch="1" xi="0.5" eta="0.5" onElement="true">1.0</pointload>
+</kirchhofflove>
+
+<postprocessing>
+  <resultpoints>
+    <point patch="1" u="0.5" v="0.5"/>
+  </resultpoints>
+</postprocessing>

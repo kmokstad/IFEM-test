@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<--! Simply supported square plate with central point load.
+     Quartic spline Kirchhoff-Love thin plate elements.
+     C^1 continuous mesh along the center vertical and horizontal lines.
+     C^3 continuous elsewhere. -->
+
+<simulation>
+
+  <geometry>
+    <projection>
+      <refine patch="1" u="1" v="1"/>
+      <raiseorder patch="1" u="3" v="3"/>
+      <refine patch="1" u="3" v="3"/>
+    </projection>
+    <raiseorder patch="1" u="1" v="1"/>
+    <refine patch="1" u="1" v="1"/>
+    <raiseorder patch="1" u="2" v="2"/>
+    <refine patch="1" u="3" v="3"/>
+  </geometry>
+
+  <discretization>
+    <nGauss>5 7</nGauss>
+  </discretization>
+
+  <include>PlateWithLoad.xinp</include>
+  <include>adaptive.xinp</include>
+
+</simulation>

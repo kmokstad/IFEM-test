@@ -1,0 +1,14 @@
+<postprocessing>
+  <projection>
+    <CGL2/>
+  </projection>
+</postprocessing>
+
+<adaptive>
+  <scheme>isotropic_function</scheme>
+  <beta type="maximum">90</beta>
+  <errtol>0.0001</errtol>
+  <maxdof>100000</maxdof>
+  <maxstep>20</maxstep>
+  <store_eps_mesh/>
+</adaptive>
