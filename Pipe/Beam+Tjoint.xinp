@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Combined linear elastic beam and solid test.
+     Simple T-joint connected to beam legs.
+     Transverse tip load on the middle beam strut.
+     Cubic NURBS continuum elements. !-->
+
+<simulation>
+
+  <elasticity>
+    <geometry dim="3">
+      <patchfile>pipe_trifucation.g2</patchfile>
+      <refine lowerpatch="1" upperpatch="10" u="7" v="7"/>
+      <include>Tjoint-topology.xinp</include>
+      <topologysets>
+        <set name="P1" type="vertex">
+          <point>-58.0 0.0 0.0</point>
+        </set>
+        <set name="P2" type="vertex">
+          <point>55.0 0.0 0.0</point>
+        </set>
+        <set name="P3" type="vertex">
+          <point>0.0 35.0 0.0</point>
+        </set>
+      </topologysets>
+    </geometry>
+    <rigid slave="left"  master="P1"/>
+    <rigid slave="right" master="P2"/>
+    <rigid slave="top"   master="P3"/>
+    <isotropic E="2.1e5" nu="0.3" rho="7.85e-6"/>
+    <discretization>
+      <nGauss default="0"/>
+    </discretization>
+  </elasticity>
+
+  <beam>
+    <geometry dim="3">
+      <patches>
+        100 1 0 0 3 0 2 2 0 0 1 1 -58.0 0.0 0.0 -158.0 0.0 0.0\
+        100 1 0 0 3 0 2 2 0 0 1 1  55.0 0.0 0.0  155.0 0.0 0.0\
+        100 1 0 0 3 0 2 2 0 0 1 1  0.0 35.0 0.0  0.0 135.0 0.0\
+      </patches>
+      <refine lowerpatch="1" upperpatch="3" u="7"/>
+      <topologysets>
+        <set name="end1" type="vertex">
+          <item patch="1">1</item>
+        </set>
+        <set name="end2" type="vertex">
+          <item patch="2">1</item>
+        </set>
+        <set name="end3" type="vertex">
+          <item patch="3">1</item>
+        </set>
+        <set name="support" type="vertex">
+          <item patch="1">2</item>
+          <item patch="2">2</item>
+        </set>
+        <set name="top" type="vertex">
+          <item patch="3">2</item>
+        </set>
+      </topologysets>
+    </geometry>
+    <boundaryconditions>
+      <dirichlet set="support" comp="1234"/>
+      <dirichlet set="top" comp="35"/>
+    </boundaryconditions>
+    <material E="2.1e5" nu="0.3" rho="7.85e-6"/>
+    <properties R="10.0" t="1.0"/>
+    <pointload patch="3" u="1.0" dof="1">1.0e4</pointload>
+  </beam>
+
+  <coupling>
+    <connection master="P1" slave="end1"/>
+    <connection master="P2" slave="end2"/>
+    <connection master="P3" slave="end3"/>
+  </coupling>
+
+  <postprocessing>
+    <resultpoints vtfsize="0.5"/>
+    <plot_rigid/>
+  </postprocessing>
+
+</simulation>

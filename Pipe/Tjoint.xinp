@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Linear elastic solid test.
+     Simple T-joint with a rigid spider at each end.
+     Cubic NURBS continuum elements. !-->
+
+<simulation>
+
+  <elasticity>
+    <geometry dim="3">
+      <patchfile>pipe_trifucation.g2</patchfile>
+      <refine lowerpatch="1" upperpatch="10" u="3" v="3"/>
+      <include>Tjoint-topology.xinp</include>
+      <topologysets>
+        <set name="P1" type="vertex">
+          <point>-58.0 0.0 0.0</point>
+        </set>
+        <set name="P2" type="vertex">
+          <point>55.0 0.0 0.0</point>
+        </set>
+        <set name="P3" type="vertex">
+          <point>0.0 35.0 0.0</point>
+        </set>
+      </topologysets>
+    </geometry>
+    <boundaryconditions>
+      <dirichlet set="P1" comp="123"/>
+      <dirichlet set="P2" comp="123"/>
+      <dirichlet set="P3" comp="3"/>
+      <neumann set="top" direction="2" type="expression">
+        1000.0*(x+10.0)
+      </neumann>
+    </boundaryconditions>
+    <rigid slave="left"  master="P1"/>
+    <rigid slave="right" master="P2"/>
+    <rigid slave="top"   master="P3"/>
+    <isotropic E="2.1e5" nu="0.3" rho="7.85e-6"/>
+    <discretization>
+      <nGauss default="0"/>
+    </discretization>
+  </elasticity>
+
+  <postprocessing>
+    <resultpoints vtfsize="0.5"/>
+    <plot_rigid/>
+  </postprocessing>
+
+</simulation>
